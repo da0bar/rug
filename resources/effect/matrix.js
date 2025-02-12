@@ -24,9 +24,9 @@ const timer = {
     }
 };
 function player(activePlayerCount, roundStart) {
-    const playerLight = document.getElementById('player-light');
+    const playerLight = document.getElementById('player-count');
 
-    playerLight.setAttribute('title', `Active Players: ${activePlayerCount}`);
+    playerLight.innerHTML = activePlayerCount;
     playerLight.classList.toggle('active', activePlayerCount > 0);
     playerLight.classList.toggle('inactive', activePlayerCount === 0);
 

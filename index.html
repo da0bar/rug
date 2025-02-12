@@ -17,8 +17,20 @@
    
     <div id="notificationContainer"></div>
     <div id="status-indicator">
-        <span id="player-light" class="pulsating-light" title="Active Players: 0"></span>
-        <span id="remaining-time">00:00</span>
+        <div>
+            <span>Active players: </span>
+            <span id="player-count">0</span>
+        </div>
+        
+        <div> 
+            <span>Round end in </span>
+            <span id="remaining-time">00:00</span>
+        </div>
+        <div class="lightContainer"> 
+            <span>Status: </span>
+            <span id="status">Inactive</span>
+            <div id="player-light" class="pulsating-light" ></div>
+        </div>
       </div>
     <div class="matrix">
         <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
@@ -159,7 +171,7 @@
                     showNotification("Wallet connected!", 3000, "success");
 
                     updateWalletUI(account);
-                    await updateGameState(contract);
+                    await updateGameState(contract, false);
                     await updateRewards(rewards, account);
 
                     if (!contract.listenerCount("RoundEnded")) {
