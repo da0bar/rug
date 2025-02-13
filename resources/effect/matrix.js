@@ -38,8 +38,10 @@ function player(activePlayerCount, roundStart) {
     playerCount.innerHTML = activePlayerCount;
     status.textContent = isActive ? "Active" : "Inactive";
     playerLight.style.backgroundColor = isActive ? "green" : "red";
+    playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
 
-    timer.start(roundStart);
+    isActive &&  timer.start(roundStart);
+  
 }
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);

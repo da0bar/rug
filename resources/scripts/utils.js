@@ -71,14 +71,6 @@ async function updateGameState(contract) {
     const roundStart = await contract.getRoundTime();
  
     player(activePlayersCount, ethers.BigNumber.from(roundStart).toNumber());
-
-    const playerLight = document.getElementById("player-light");
-    const status = document.getElementById("status");
-    const isActive = activePlayersCount > 0;
-        playerLight.style.backgroundColor = isActive ? "green" : "red";
-        status.textContent = isActive ? "Active" : "Inactive";
-        playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
-   
 }
 
 async function updateRewards(rewards, account) {
