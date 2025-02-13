@@ -191,7 +191,11 @@
             const betValue = document.getElementById('betValue').value;
             const betAmount = document.getElementById('betAmount').value;
   
-            if (!betValue || !betAmount || isNaN(betValue) || isNaN(betAmount)) {
+            if (!betValue || isNaN(betValue) ) {
+                showNotification("Pick a number, chad.", 3000, "error");
+                return;
+            }
+            if (!betAmount || isNaN(betAmount)) {
                 showNotification("You have to bet something, chad.", 3000, "error");
                 return;
             }
