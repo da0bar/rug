@@ -32,10 +32,12 @@ const timer = {
 function player(activePlayerCount, roundStart) {
     const playerCount = document.getElementById('player-count');
     const playerLight = document.getElementById('player-light');
+    const isActive = activePlayersCount > 0;
+    const status = document.getElementById("status");
 
     playerCount.innerHTML = activePlayerCount;
-    playerLight.classList.toggle('active', activePlayerCount > 0);
-    playerLight.classList.toggle('inactive', activePlayerCount === 0);
+    status.textContent = isActive ? "Active" : "Inactive";
+    playerLight.style.backgroundColor = isActive ? "green" : "red";
 
     timer.start(roundStart);
 }
