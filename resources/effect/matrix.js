@@ -32,7 +32,7 @@ const timer = {
 function player(activePlayerCount, roundStart) {
     const playerCount = document.getElementById('player-count');
     const playerLight = document.getElementById('player-light');
-    const isActive = activePlayersCount > 0;
+    const isActive = activePlayerCount > 0;
     const status = document.getElementById("status");
 
     playerCount.innerHTML = activePlayerCount;
