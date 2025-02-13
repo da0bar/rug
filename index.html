@@ -171,7 +171,6 @@
                     showNotification("Wallet connected!", 3000, "success");
 
                     updateWalletUI(account);
-                    await updateGameState(contract);
                     await updateRewards(rewards, account);
 
                     if (!contract.listenerCount("RoundEnded")) {
