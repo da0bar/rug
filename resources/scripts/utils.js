@@ -66,7 +66,7 @@ function updateWalletUI(account) {
 
     showNotification("Wallet connected!", 3000, "success");
 }
-async function updateGameState(contract, end) {
+async function updateGameState(contract) {
     const activePlayersCount = await contract.activePlayers();
     const roundStart = await contract.getRoundTime();
  
@@ -75,14 +75,10 @@ async function updateGameState(contract, end) {
     const playerLight = document.getElementById("player-light");
     const status = document.getElementById("status");
     const isActive = activePlayersCount > 0;
-    if(!end) {
         playerLight.style.backgroundColor = isActive ? "green" : "red";
         status.textContent = isActive ? "Active" : "Inactive";
         playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
-    }else{
-        playerLight.style.backgroundColor = "yellow";
-        status.textContent = "Processing...";
-    }
+   
 }
 
 async function updateRewards(rewards, account) {
@@ -106,7 +102,7 @@ async function handleRoundEnded(contract, winners, account) {
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
 
-    await updateGameState(contract, true);
+    await updateGameState(contract);
     await updateRewards(rewards, account);
 
     const isWinner = winners.includes(ethers.utils.getAddress(account));

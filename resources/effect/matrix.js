@@ -10,10 +10,16 @@ const timer = {
             const currentTime = Math.floor(Date.now() / 1000);
             const elapsedTime = currentTime - roundStart;
             const timeLeft = ROUND_DURATION - elapsedTime;
-
+            const playerLight = document.getElementById("player-light");
+            const status = document.getElementById("status");
+            
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
 
-            if (timeLeft < 0) clearInterval(this.interval);
+            if (timeLeft < 0){ 
+                playerLight.style.backgroundColor = "yellow";
+                status.textContent = "Processing...";
+                clearInterval(this.interval);
+            }
         };
 
         updateTimer();
