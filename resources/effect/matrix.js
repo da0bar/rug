@@ -12,7 +12,7 @@ const timer = {
             const timeLeft = ROUND_DURATION - elapsedTime;
             const playerLight = document.getElementById("player-light");
             const status = document.getElementById("status");
-            
+
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
 
             if (timeLeft < 0){ 
@@ -30,9 +30,10 @@ const timer = {
     }
 };
 function player(activePlayerCount, roundStart) {
-    const playerLight = document.getElementById('player-count');
+    const playerCount = document.getElementById('player-count');
+    const playerLight = document.getElementById('player-light');
 
-    playerLight.innerHTML = activePlayerCount;
+    playerCount.innerHTML = activePlayerCount;
     playerLight.classList.toggle('active', activePlayerCount > 0);
     playerLight.classList.toggle('inactive', activePlayerCount === 0);
 
