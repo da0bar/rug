@@ -18,12 +18,12 @@
     <div id="notificationContainer"></div>
     <div id="status-indicator">
         <div>
-            <span>Active players: </span>
+            <span>Players: </span>
             <span id="player-count">0</span>
         </div>
         
         <div> 
-            <span>Round end in </span>
+            <span>Round end: </span>
             <span id="remaining-time">00:00</span>
         </div>
         <div class="lightContainer"> 
@@ -175,6 +175,11 @@
 
                     if (!contract.listenerCount("RoundEnded")) {
                         contract.on("RoundEnded", async (winningNumber, winners, tgIds, rewardPerWinner) => {
+                            console.log("Round ended");
+                            console.log("winningNumber", winningNumber);
+                            console.log("winners", winners);
+                            console.log("rewardPerWinner", rewardPerWinner);
+
                             handleRoundEnded(contract, winners, account);
                         });
                     }
