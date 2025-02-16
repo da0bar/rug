@@ -215,7 +215,14 @@
                 Math.random() > 0.8 && triggerRugged();
             } catch (error) {
                 console.error("Error placing bet:", error);
-                showNotification(error.message, 3000, "error");
+                if(error.message.includes("This address is already playing this round")) {
+                    showNotification("Already playing chad. Wait the end of round", 3000, "error");
+                } else if(error.message.includes("user rejected transaction")) {
+                    showNotification("Bet cancelled", 3000, "error");
+                }else {
+                    showNotification("Failed to place bet", 3000, "error");
+                }
+               
             }
         });
 
