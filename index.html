@@ -215,7 +215,7 @@
                 Math.random() > 0.8 && triggerRugged();
             } catch (error) {
                 console.error("Error placing bet:", error);
-                showNotification("Failed to place bet", 3000, "error");
+                showNotification(error, 3000, "error");
             }
         });
 
