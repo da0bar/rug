@@ -169,17 +169,12 @@
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
 
                     showNotification("Wallet connected!", 3000, "success");
-
+                    await updateGameState(contract);
                     updateWalletUI(account);
                     await updateRewards(rewards, account);
 
                     if (!contract.listenerCount("RoundEnded")) {
                         contract.on("RoundEnded", async (winningNumber, winners, tgIds, rewardPerWinner) => {
-                            console.log("Round ended");
-                            console.log("winningNumber", winningNumber);
-                            console.log("winners", winners);
-                            console.log("rewardPerWinner", rewardPerWinner);
-
                             handleRoundEnded(contract, winners, account);
                         });
                     }
