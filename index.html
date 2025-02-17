@@ -148,7 +148,7 @@
         let signer;
         let contract;
         let rewards
-        connectWalletButton.addEventListener('click', async () => {
+        async function connectWallet() {
             if (signer) return
             if (!window.ethereum || !window.ethereum.isMetaMask) {
                 return showNotification("MetaMask not detected! Install MetaMask browser to use this app", 5000, "error");
@@ -163,8 +163,8 @@
                         showNotification("Switch to Base Sepolia Testnet", 5000, "error");
                         return;
                     }
-                    localStorage.setItem("walletConnected", "true"); // Store connection state
-
+                    localStorage.setItem("walletConnected", "true");
+                    localStorage.setItem("walletAddress", account);
                     signer = provider.getSigner();
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
@@ -184,7 +184,7 @@
                     showNotification("Failed to connect wallet. Try again cuck.", 3000, "error");
                 }
             
-        });
+        };
         
         document.getElementById('placeBet').addEventListener('click', async () => {
             if (!checkWalletConnection()) return;
@@ -257,16 +257,29 @@
                 showNotification("Nothing to withdraw cuck", 3000, "error");
             }
         });
-        window.ethereum?.on("accountsChanged", (accounts) => {
-        if (accounts.length === 0) {
-            localStorage.removeItem("walletConnected"); // Clear connection state if disconnected
-        }
-        }); 
+        connectWalletButton.addEventListener('click', async () => {
+            await connectWallet(); 
+        });
         window.addEventListener("load", async () => {
-        if (localStorage.getItem("walletConnected") === "true") {
-            await connectWallet();
-        }
-});
+            if (localStorage.getItem("walletConnected") === "true") {
+                await connectWallet();
+            }
+        });
+        window.ethereum?.on("accountsChanged", async (accounts) => {
+            if (accounts.length === 0) {
+                localStorage.removeItem("walletConnected");
+                localStorage.removeItem("walletAddress");
+                showNotification("Wallet disconnected", 3000, "error");
+                updateWalletUI(null);
+            } else {
+                const storedAccount = localStorage.getItem("walletAddress");
+                if (storedAccount !== accounts[0]) {
+                    localStorage.setItem("walletAddress", accounts[0]);
+                    await connectWallet();
+                }
+            }
+        });
+
     </script>
     <script src="resources/effect/carousel.js"></script>
     <script src="resources/effect/matrix.js"></script>
