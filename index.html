@@ -176,6 +176,7 @@
 
                     if (!contract.listenerCount("RoundEnded")) {
                         contract.on("RoundEnded", async (winningNumber, winners, tgIds, rewardPerWinner) => {
+                            console.log("Round ended", winningNumber, winners, tgIds, rewardPerWinner);
                             handleRoundEnded(contract, winners, account);
                         });
                     }
