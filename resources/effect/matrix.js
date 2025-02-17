@@ -29,7 +29,7 @@ const timer = {
         clearInterval(this.interval);
     }
 };
-function player(activePlayerCount, roundStart) {
+function player(activePlayerCount, roundStart, forceUpdate = false) {
     const playerCount = document.getElementById('player-count');
     const playerLight = document.getElementById('player-light');
     const isActive = activePlayerCount > 0;
@@ -41,7 +41,7 @@ function player(activePlayerCount, roundStart) {
     playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
 
     isActive && timer.start(roundStart);
-  
+    forceUpdate && timer.stop();
 }
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);

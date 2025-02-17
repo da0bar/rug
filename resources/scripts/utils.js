@@ -66,11 +66,11 @@ function updateWalletUI(account) {
 
     showNotification("Wallet connected!", 3000, "success");
 }
-async function updateGameState(contract) {
+async function updateGameState(contract, forceUpdate = false) {
     const activePlayersCount = await contract.activePlayers();
     const roundStart = await contract.getRoundTime();
  
-    player(activePlayersCount, ethers.BigNumber.from(roundStart).toNumber());
+    player(activePlayersCount, ethers.BigNumber.from(roundStart).toNumber(), forceUpdate);
 }
 
 async function updateRewards(rewards, account) {
@@ -94,7 +94,7 @@ async function handleRoundEnded(contract, winners, account) {
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
 
-    await updateGameState(contract);
+    await updateGameState(contract, true);
     await updateRewards(rewards, account);
 
     const isWinner = winners.includes(ethers.utils.getAddress(account));
