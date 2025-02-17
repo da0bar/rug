@@ -40,7 +40,7 @@ function player(activePlayerCount, roundStart) {
     playerLight.style.backgroundColor = isActive ? "green" : "red";
     playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
 
-    isActive &&  timer.start(roundStart);
+    isActive && timer.start(roundStart);
   
 }
 function formatTime(seconds) {
@@ -179,14 +179,10 @@ function triggerRugged() {
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
  
-    
-    const indian = new Audio('resources/audio/indian.mp3')
-    indian.play()
+
     setTimeout(() => {
-        indian.pause()
         container.style.display = "block";
         pathContainer.style.display = "block";
-        new Audio('resources/audio/trololo.mp3').play()
         textOverlay.style.display = "none";
         textOverlay.style.opacity = "0";
         document.body.style.backgroundImage = "url('resources/img/rug_bg.jpg')";
@@ -209,4 +205,14 @@ document.addEventListener("DOMContentLoaded", function() {
             betAmountInput.value = this.getAttribute("data-value");
         });
     });
+});
+window.ethereum?.on("accountsChanged", (accounts) => {
+    if (accounts.length === 0) {
+        localStorage.removeItem("walletConnected"); // Clear connection state if disconnected
+    }
+}); 
+window.addEventListener("load", async () => {
+    if (localStorage.getItem("walletConnected") === "true") {
+        await connectWallet();
+    }
 });

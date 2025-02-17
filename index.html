@@ -163,6 +163,7 @@
                         showNotification("Switch to Base Sepolia Testnet", 5000, "error");
                         return;
                     }
+                    localStorage.setItem("walletConnected", "true"); // Store connection state
 
                     signer = provider.getSigner();
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
