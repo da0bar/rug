@@ -75,8 +75,11 @@ async function updateGameState(contract) {
 
 async function updateRewards(rewards, account) {
     const rewardBalance = await rewards.getRewardBalance(account);
-    const gameReward = await contract.getRewardBalance(account);
-
+    const [totalSupply, holderBalance, totalPot, reward] = await contract.getRewardBalance(account);
+    console.log("Total Supply:", totalSupply);
+    console.log("User Balance:", holderBalance);
+    console.log("Total Pot:", totalPot);
+    console.log("Calculated Reward:", reward);
     const rewardValue = parseFloat(ethers.utils.formatEther(rewardBalance)).toFixed(6);
     const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(6)
 
