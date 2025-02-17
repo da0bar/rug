@@ -206,13 +206,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-window.ethereum?.on("accountsChanged", (accounts) => {
-    if (accounts.length === 0) {
-        localStorage.removeItem("walletConnected"); // Clear connection state if disconnected
-    }
-}); 
-window.addEventListener("load", async () => {
-    if (localStorage.getItem("walletConnected") === "true") {
-        await connectWallet();
-    }
-});
