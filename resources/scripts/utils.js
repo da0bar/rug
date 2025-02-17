@@ -69,8 +69,7 @@ function updateWalletUI(account) {
 async function updateGameState(contract, forceUpdate = false) {
     const activePlayersCount = await contract.activePlayers();
     const roundStart = await contract.getRoundTime();
-    console.log(ethers.BigNumber.from(roundStart).toNumber());
-    console.log(ethers.BigNumber.from(roundStart).toString());
+    
     const formattedRoundStart = ethers.BigNumber.from(roundStart).toNumber();
     player(activePlayersCount, formattedRoundStart, forceUpdate);
 }
