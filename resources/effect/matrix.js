@@ -13,7 +13,7 @@ const timer = {
             const timeLeft = ROUND_DURATION - elapsedTime;
             // console.log('roundStart', roundStart);
             // console.log('currentTime', currentTime);
-            // console.log('elapsedTime', elapsedTime);
+            console.log('elapsedTime', elapsedTime);
 
             // console.log('timeLeft', timeLeft);
             const roundStartTime = currentTime - (currentTime % 90);

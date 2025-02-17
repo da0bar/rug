@@ -71,6 +71,7 @@ async function updateGameState(contract, forceUpdate = false) {
     const roundStart = await contract.getRoundTime();
     
     const formattedRoundStart = ethers.BigNumber.from(roundStart).toNumber();
+    console.log('formattedRoundStart', formattedRoundStart);
     player(activePlayersCount, formattedRoundStart, forceUpdate);
 }
 
