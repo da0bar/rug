@@ -208,11 +208,7 @@
                 await tx.wait();
                 showNotification("Bet placed successfully!", 5000, "success");
 
-                const activePlayersCount = await contract.activePlayers();
-                const time = await contract.getRoundTime();
-
-                player(activePlayersCount, time);
-
+                await updateGameState(contract);
                 showTransactionHash(tx.hash);
                 Math.random() > 0.8 && triggerRugged();
             } catch (error) {
