@@ -7,13 +7,14 @@ const timer = {
         if (roundStart === 0) return;
 
         const updateTimer = () => {
-           
+            
             const currentTime = Math.floor(Date.now() / 1000);
             const elapsedTime = currentTime - roundStart;
             const timeLeft = ROUND_DURATION - elapsedTime;
              console.log('roundStart', roundStart);
             // console.log('currentTime', currentTime);
             console.log('elapsedTime', elapsedTime);
+
 
             const playerLight = document.getElementById("player-light");
             const status = document.getElementById("status");
@@ -45,7 +46,7 @@ function player(activePlayerCount, roundStart, forceUpdate = false) {
     playerLight.style.backgroundColor = isActive ? "green" : "red";
     playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
 
-    isActive && timer.start(roundStart);
+    isActive && timer.start(roundStart-10);
     forceUpdate && timer.stop();
 }
 function formatTime(seconds) {
