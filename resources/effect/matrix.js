@@ -46,7 +46,7 @@ function player(activePlayerCount, roundStart, forceUpdate = false) {
     playerLight.style.backgroundColor = isActive ? "green" : "red";
     playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
 
-    isActive && timer.start(roundStart-10);
+    isActive && timer.start(roundStart+10);
     forceUpdate && timer.stop();
 }
 function formatTime(seconds) {
