@@ -54,7 +54,7 @@ function closeNotification(notificationCard) {
 function updateWalletUI(account) {
     console.log('account', account);    
     let text;
-    account ? (text = `account.slice(0, 6) + '...' + account.slice(-4)`) : (text = "Connect Wallet");
+    account !== null ? (text = account.slice(0, 6) + '...' + account.slice(-4)) : (text = "Connect Wallet");
     connectWalletButton.innerHTML = `
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -64,7 +64,7 @@ function updateWalletUI(account) {
         <span>${text}</span>
     `;
 
-    if (account) {
+    if (account !== null) {
         connectWalletButton.classList.add("connected");
         showNotification("Wallet connected!", 3000, "success");
     }
