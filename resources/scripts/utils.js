@@ -62,7 +62,6 @@ function updateWalletUI(account) {
     `;
 
     connectWalletButton.classList.add("connected");
-    connectWalletButton.disabled = true;
 
     showNotification("Wallet connected!", 3000, "success");
 }
@@ -78,7 +77,7 @@ async function updateGameState(contract, forceUpdate = false) {
 async function updateRewards(rewards, account) {
     const reward = await rewards.getRewardBalance(account);
     const gameReward = await contract.getRewardBalance(account);
-    
+
     const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(6);
     const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(6)
 
