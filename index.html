@@ -81,13 +81,17 @@
         </div>
 
         <div class="tab" id="tabContentWithdraw">
-            <div>
-                <p>Boo fucking hoo, Come back soon CUCK</p>
-            </div>
+
             <div id="tokenDisplay" class="token-display">
+                <p class="token-title">Money pot</p>
                 <div class="token-info">
+                    <span class="token-icon">🪙</span>
+                    <span class="token-amount" id="pot">Fuck all</span>
+                </div>
+                <p class="token-title">Claimable amount</p>
+                <div class="token-info">             
                     <span class="token-icon">💰</span>
-                    <span class="token-amount" id="gameRewardz">Bag is empty</span>
+                    <span class="token-amount" id="userTokens">Cuck no win?</span>
                 </div>
             </div>
             <button type="button" class="button withdraw-btn" id="withdraw" disabled>Withdraw</button>
@@ -99,8 +103,8 @@
             </div>
             <div id="tokenDisplay" class="token-display">
                 <div class="token-info">
-                    <span class="token-icon">💰</span>
-                    <span class="token-amount" id="userTokens">Bag is empty</span>
+                        <span class="token-icon">💰</span>
+                        <span class="token-amount" id="userTokens">Bag is empty</span>
                 </div>
             </div>
             <button type="button" class="button claim-rewards-btn" id="claimRewards" disabled>Give it to me</button>
@@ -166,9 +170,14 @@
                     localStorage.setItem("walletConnected", "true");
                     localStorage.setItem("walletAddress", account);
                     signer = provider.getSigner();
+                   
+
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
-
+                    const getBalance = await provider.getBalance(contract);
+                    const balance = ethers.utils.formatEther(getBalance)
+                    document.getElementById("pot").textContent = balance;
+                    
                     showNotification("Wallet connected!", 3000, "success");
                     await updateGameState(contract);
                     updateWalletUI(account);
@@ -255,7 +264,14 @@
             }
         });
         connectWalletButton.addEventListener('click', async () => {
-            await connectWallet(); 
+            if (accounts.length === 0) {
+                await connectWallet(); 
+            }else{
+                localStorage.removeItem("walletConnected");
+                localStorage.removeItem("walletAddress");
+                showNotification("Wallet disconnected", 3000, "success");
+                updateWalletUI(null);
+            }
         });
         window.addEventListener("load", async () => {
             if (localStorage.getItem("walletConnected") === "true") {

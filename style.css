@@ -235,17 +235,28 @@ label {
     text-align: left;
     color: #333;
 }
+.token-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin:0
+
+}
+.token-info{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: glow 1.5s infinite;
+
+}
 .token-display {
     display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     justify-content: center;
-    animation: glow 1.5s infinite;
     margin: 20px auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Styling the token icon */
 .token-icon {
-    font-size: 30px;
+    font-size: 2rem;
     color: white;
 }
 
