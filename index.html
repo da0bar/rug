@@ -174,7 +174,8 @@
 
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
-                    const getBalance = await provider.getBalance(contract);
+                 
+                    const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
                     const balance = ethers.utils.formatEther(getBalance)
                     document.getElementById("pot").textContent = balance;
 
