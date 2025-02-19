@@ -52,7 +52,6 @@ function closeNotification(notificationCard) {
     });
 }
 function updateWalletUI(account) {
-    console.log('account', account);    
     let text;
     account !== null ? (text = account.slice(0, 6) + '...' + account.slice(-4)) : (text = "Connect Wallet");
     connectWalletButton.innerHTML = `

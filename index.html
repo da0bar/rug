@@ -265,12 +265,12 @@
             }
         });
         connectWalletButton.addEventListener('click', async () => {
-            if (localStorage.getItem("walletConnected") !== "true") {
-                await connectWallet(); 
-            }else{
+            if (localStorage.getItem("walletConnected") === "true") {
                 localStorage.removeItem("walletConnected");
                 localStorage.removeItem("walletAddress");
                 updateWalletUI(null);
+            }else{
+                await connectWallet();       
             }
         });
         window.addEventListener("load", async () => {
