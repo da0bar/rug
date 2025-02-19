@@ -265,7 +265,7 @@
             }
         });
         connectWalletButton.addEventListener('click', async () => {
-            if (localStorage.getItem("walletConnected") === "true") {
+            if (localStorage.getItem("walletConnected") !== "true") {
                 await connectWallet(); 
             }else{
                 localStorage.removeItem("walletConnected");
