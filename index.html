@@ -177,7 +177,7 @@
                     const getBalance = await provider.getBalance(contract);
                     const balance = ethers.utils.formatEther(getBalance)
                     document.getElementById("pot").textContent = balance;
-                    
+
                     showNotification("Wallet connected!", 3000, "success");
                     await updateGameState(contract);
                     updateWalletUI(account);
@@ -264,7 +264,7 @@
             }
         });
         connectWalletButton.addEventListener('click', async () => {
-            if (accounts.length === 0) {
+            if (localStorage.getItem("walletConnected") === "true") {
                 await connectWallet(); 
             }else{
                 localStorage.removeItem("walletConnected");
