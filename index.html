@@ -269,7 +269,8 @@
                 localStorage.removeItem("walletConnected");
                 localStorage.removeItem("walletAddress");
                 updateWalletUI(null);
-            }else{
+            }else{  
+                console.log('connects')
                 await connectWallet();       
             }
         });
