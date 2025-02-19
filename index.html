@@ -267,7 +267,9 @@
         connectWalletButton.addEventListener('click', async () => {
             if (localStorage.getItem("walletConnected") !== "true") {
                 await connectWallet(); 
+                console.log('er')
             }else{
+                console.log('test')
                 localStorage.removeItem("walletConnected");
                 localStorage.removeItem("walletAddress");
                 showNotification("Wallet disconnected", 3000, "success");
