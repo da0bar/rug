@@ -83,7 +83,7 @@ async function initTimer() {
 async function updateGameState(contract) {
     const activePlayersCount = await contract.activePlayers();
 
-    player(activePlayersCount, start);
+    player(activePlayersCount);
 }
 
 async function updateRewards(rewards, account) {
