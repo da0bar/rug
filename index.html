@@ -177,7 +177,6 @@
                     const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
                     const balance = ethers.utils.formatEther(getBalance)
                     document.getElementById("pot").textContent = balance;
-                    console.log(start)
                     showNotification("Wallet connected!", 3000, "success");
                  
                     await updateGameState(contract);
