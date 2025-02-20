@@ -11,6 +11,8 @@ const timer = {
             const currentTime = Math.floor(Date.now() / 1000);
             const elapsedTime = currentTime - roundStart;
             const timeLeft = ROUND_DURATION - elapsedTime;
+            console.log(currentTime)
+            console.log(roundStart)
 
             const playerLight = document.getElementById("player-light");
             const status = document.getElementById("status");
