@@ -56,7 +56,7 @@
         </button>
         <div class="tabs">
             <button class="tab-button active" id="tabPlaceBet">Place Bet</button>
-            <button class="tab-button" id="tabWithdraw">Withdraw</button>
+            <button class="tab-button" id="tabWithdraw">Money</button>
             <button class="tab-button" id="tabGameRewards">Game Rewards</button>
         </div>
         <div class="tab active" id="tabContentPlaceBet">
@@ -170,9 +170,7 @@
                     localStorage.setItem("walletAddress", account);
                     signer = provider.getSigner();
                    
-                    const getTimer = await fetch("https://gamblecigars-03493e521f39.herokuapp.com/timer");
-                    const timerData = await getTimer.json();
-                    const {start} = timerData;
+                    initTimer();
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
                  
@@ -181,7 +179,8 @@
                     document.getElementById("pot").textContent = balance;
                     console.log(start)
                     showNotification("Wallet connected!", 3000, "success");
-                    await updateGameState(contract, start);
+                 
+                    await updateGameState(contract);
                     updateWalletUI(account);
                     await updateRewards(rewards, account);
 
@@ -218,9 +217,6 @@
                 showNotification("Transaction sent, waiting for confirmation...", 3000, "success");
                 await tx.wait();
                 showNotification("Bet placed successfully!", 5000, "success");
-                const getTimer = await fetch("https://gamblecigars-03493e521f39.herokuapp.com/timer");
-                const timerData = await getTimer.json();
-                const {start} = timerData;
 
                 await updateGameState(contract);
                 showTransactionHash(tx.hash);

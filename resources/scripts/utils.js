@@ -73,9 +73,15 @@ function updateWalletUI(account) {
     }
   
 }
-async function updateGameState(contract, start) {
-    const activePlayersCount = await contract.activePlayers();
+async function initTimer() {    
+    const getTimer = await fetch("https://gamblecigars-03493e521f39.herokuapp.com/timer");
+    const timerData = await getTimer.json();
+    const {start} = timerData;
     
+    timerStart(start);
+}
+async function updateGameState(contract) {
+    const activePlayersCount = await contract.activePlayers();
 
     player(activePlayersCount, start);
 }
@@ -102,9 +108,9 @@ async function handleRoundEnded(contract, winners, account) {
     document.body.style.backgroundSize = "auto";
 
 
-    await updateGameState(contract, start);
+    await updateGameState(contract);
     await updateRewards(rewards, account);
-
+    initTimer();
     const isWinner = winners.includes(ethers.utils.getAddress(account));
     showStack(
         isWinner ? "🫦 You won, ginormous CHAD" : "🤡 You lost. Because you are a cuck",
