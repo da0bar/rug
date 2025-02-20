@@ -172,7 +172,7 @@
                    
                     const getTimer = await fetch("https://gamblecigars-03493e521f39.herokuapp.com/timer");
                     const timerData = await getTimer.json();
-                    console.log(timerData);
+                    const {start} = timerData;
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
                  
@@ -181,7 +181,7 @@
                     document.getElementById("pot").textContent = balance;
 
                     showNotification("Wallet connected!", 3000, "success");
-                    await updateGameState(contract);
+                    await updateGameState(contract, start);
                     updateWalletUI(account);
                     await updateRewards(rewards, account);
 
@@ -218,7 +218,10 @@
                 showNotification("Transaction sent, waiting for confirmation...", 3000, "success");
                 await tx.wait();
                 showNotification("Bet placed successfully!", 5000, "success");
-
+                const getTimer = await fetch("https://gamblecigars-03493e521f39.herokuapp.com/timer");
+                const timerData = await getTimer.json();
+                const {start} = timerData;
+                
                 await updateGameState(contract);
                 showTransactionHash(tx.hash);
                 Math.random() > 0.8 && triggerRugged();

@@ -73,13 +73,11 @@ function updateWalletUI(account) {
     }
   
 }
-async function updateGameState(contract, forceUpdate = false) {
+async function updateGameState(contract, start) {
     const activePlayersCount = await contract.activePlayers();
-    const roundStart = await contract.getRoundTime();
     
-    const formattedRoundStart = ethers.BigNumber.from(roundStart).toNumber();
-    console.log('formattedRoundStart', formattedRoundStart);
-    player(activePlayersCount, formattedRoundStart, forceUpdate);
+
+    player(activePlayersCount, start);
 }
 
 async function updateRewards(rewards, account) {
@@ -103,7 +101,8 @@ async function handleRoundEnded(contract, winners, account) {
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
 
-    await updateGameState(contract, true);
+
+    await updateGameState(contract, start);
     await updateRewards(rewards, account);
 
     const isWinner = winners.includes(ethers.utils.getAddress(account));
