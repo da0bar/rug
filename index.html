@@ -171,7 +171,8 @@
                     signer = provider.getSigner();
                    
                     const getTimer = await fetch("https://gamblecigars-03493e521f39.herokuapp.com/timer");
-                    console.log(getTimer)
+                    const timerData = await getTimer.json();
+                    console.log(timerData);
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
                  
