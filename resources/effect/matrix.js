@@ -66,7 +66,10 @@ function updateStatus(message, delay, callback) {
     setTimeout(() => {
         const status = document.getElementById("status");
         status.textContent = message;
-        if (callback) callback();
+        if (callback) {
+            callback();
+            player(0);
+        }
     }, delay);
 }
 document.getElementById('title').addEventListener('click', () => {
