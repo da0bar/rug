@@ -62,7 +62,6 @@ function handleNoPlayers() {
             initTimer();
             player(0);
         });
-     
     });
 }
 
