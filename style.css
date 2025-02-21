@@ -236,9 +236,9 @@ label {
     color: #333;
 }
 .token-title{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #FFD700;
+    color: #000000;
     margin-bottom: 5px;
 
 }
@@ -248,7 +248,6 @@ label {
     justify-content: center;
     gap: 8px;
     padding: 10px;
-    border-radius: 8px;
     transition: transform 0.2s ease-in-out;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     animation: glow 1.5s infinite;
@@ -261,20 +260,18 @@ label {
 .token-display {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
     margin: 5px auto;
     padding: 20px;
     max-width: 300px;
-    background: linear-gradient(135deg, #222, #333);
+    background: #ffffffb8;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    box-shadow: 0 8px 18px rgb(151 86 86 / 61%);
 }
 
 /* Styling the token icon */
 .token-icon {
     font-size: 2rem;
-    color: white;
 }
 
 /* Styling the token amount */

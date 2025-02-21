@@ -22,17 +22,11 @@ const timer = {
             if (timeLeft < 0){ 
                 playerLight.style.backgroundColor = "yellow";
                 status.textContent = "Calling smart contract...";
-                if(playerCount < 1) {            
-                    setTimeout(()=>{
-                        status.textContent = "No player this round";
+                clearInterval(this.interval); // Stop the timer first
 
-                        setTimeout(() => {
-                            status.textContent = "Waiting for next round...";
-                        }, 2000); // This runs **after** the first timeout completes
-                    }, 2000);
-                  
+                if (playerCount < 1) {  
+                    handleNoPlayers();
                 }
-                clearInterval(this.interval);
             }
         };
 
@@ -62,7 +56,19 @@ function formatTime(seconds) {
   const secs = seconds % 60;
   return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 }
+function handleNoPlayers() {
+    updateStatus("No player this round", 2000, () => {
+        updateStatus("Waiting for next round...", 2000, initTimer);
+    });
+}
 
+function updateStatus(message, delay, callback) {
+    setTimeout(() => {
+        const status = document.getElementById("status");
+        status.textContent = message;
+        if (callback) callback();
+    }, delay);
+}
 document.getElementById('title').addEventListener('click', () => {
     const rect = document.getElementById('title').getBoundingClientRect();
     const trumpCountElem = document.getElementById('trumpCount');
