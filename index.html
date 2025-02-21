@@ -216,6 +216,7 @@
                 showNotification("Transaction sent, waiting for confirmation...", 3000, "success");
                 await tx.wait();
                 showNotification("Bet placed successfully!", 5000, "success");
+                initTimer();
 
                 await updateGameState(contract);
                 showTransactionHash(tx.hash);
