@@ -56,7 +56,7 @@
         </button>
         <div class="tabs">
             <button class="tab-button active" id="tabPlaceBet">Play</button>
-            <button class="tab-button" id="tabWithdraw">Money</button>
+            <button class="tab-button" id="tabWithdraw">Pot</button>
             <button class="tab-button" id="tabGameRewards">Game Rewards</button>
         </div>
         <div class="tab active" id="tabContentPlaceBet">
@@ -83,12 +83,12 @@
         <div class="tab" id="tabContentWithdraw">
 
             <div id="tokenDisplay" class="token-display">
-                <p class="token-title">Money pot (eth)</p>
+                <p class="token-title">Total (ETH)</p>
                 <div class="token-info">
                     <span class="token-icon">🪙</span>
                     <span class="token-amount" id="pot">Fuck all</span>
                 </div>
-                <p class="token-title">Claimable amount (eth)</p>
+                <p class="token-title">Claimable amount (ETH)</p>
                 <div class="token-info">             
                     <span class="token-icon">💰</span>
                     <span class="token-amount" id="gameRewardz">Cuck no win?</span>
@@ -171,6 +171,7 @@
                     signer = provider.getSigner();
                    
                     initTimer();
+                    contract.rug()
                     contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
                  
