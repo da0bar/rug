@@ -58,7 +58,11 @@ function formatTime(seconds) {
 }
 function handleNoPlayers() {
     updateStatus("No player this round", 2000, () => {
-        updateStatus("Waiting for next round...", 2000, initTimer);
+        updateStatus("Waiting for next round...", 2000, () => {
+            initTimer();
+            player(0);
+        });
+     
     });
 }
 
@@ -66,10 +70,7 @@ function updateStatus(message, delay, callback) {
     setTimeout(() => {
         const status = document.getElementById("status");
         status.textContent = message;
-        if (callback) {
-            callback();
-            player(0);
-        }
+        if (callback) callback();   
     }, delay);
 }
 document.getElementById('title').addEventListener('click', () => {
