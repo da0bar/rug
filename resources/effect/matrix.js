@@ -17,17 +17,20 @@ const timer = {
             const status = document.getElementById("status");
 
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
-            const playerCount = document.getElementById('player-count');
+            const player = document.getElementById('player-count');
+            const playerCount = parseInt(player.innerHTML);
             if (timeLeft < 0){ 
                 playerLight.style.backgroundColor = "yellow";
                 status.textContent = "Calling smart contract...";
                 if(playerCount < 1) {            
                     setTimeout(()=>{
                         status.textContent = "No player this round";
+
+                        setTimeout(() => {
+                            status.textContent = "Waiting for next round...";
+                        }, 2000); // This runs **after** the first timeout completes
                     }, 2000);
-                    setTimeout(()=>{
-                        status.textContent = "Waiting for next round...";
-                    }, 2000);
+                  
                 }
                 clearInterval(this.interval);
             }
