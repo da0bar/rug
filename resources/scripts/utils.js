@@ -121,7 +121,7 @@ async function handleRoundEnded(contract, winners, account) {
     setTimeout(() => {
         document.body.style.background = "";
         document.getElementById("random-path-container").style.display = "block";
-    }, 10000);
+    }, 8000);
 
     document.getElementById("betValue").value = "";
     document.getElementById("betAmount").value = "";

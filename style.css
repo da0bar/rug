@@ -131,7 +131,7 @@ h1 {
 .tab {
     flex: 1;
     text-align: center;
-    padding: 0.75rem 0;
+    padding: 0.75rem 2rem;
     display: none;
     font-size: 1rem;
     color: #555;
@@ -262,7 +262,7 @@ label {
     flex-direction: column;
     align-items: flex-start;
     margin: 5px auto;
-    padding: 2rem 4rem;
+    padding: 2rem 2rem;
     max-width: 300px;
     background: #ffffffb8;
     border-radius: 12px;
