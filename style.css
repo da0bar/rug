@@ -284,9 +284,7 @@ label {
     font-weight: bold;
     color:white;  /* Green color for tokens */
 }
-#connectWallet {
-    margin-bottom: 1rem;
-}
+
 #notificationBanner {
     position: fixed;
     top: 10px;
