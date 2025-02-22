@@ -111,7 +111,7 @@ async function updateRewards(rewards, account) {
 
     document.getElementById("pot").textContent = balance;
 
-    document.getElementById("userTokens").textContent = rewardValue;
+    document.getElementById("userTokens").textContent = rewardValue + " ETH";
     document.getElementById("claimRewards").disabled = reward.lte(0);
 
     document.getElementById("gameRewardz").textContent = gameRewardValue;

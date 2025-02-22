@@ -47,7 +47,7 @@ function player(activePlayerCount) {
     const status = document.getElementById("status");
     
     playerCount.innerHTML = activePlayerCount;
-    status.textContent = isActive ? "Active" : "Inactive";
+    status.textContent = isActive ? "In game" : "Inactive";
     playerLight.style.backgroundColor = isActive ? "green" : "red";
     playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
 }
