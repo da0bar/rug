@@ -92,7 +92,7 @@ async function updateRewards(rewards, account) {
 
     const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(4);
     const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(4)
-    const getBalance = await provider.getBalance(contract_address);
+    const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
 
     const balance = ethers.utils.formatEther(getBalance)
     document.getElementById("pot").textContent = balance;
