@@ -208,7 +208,10 @@ input[type="text"] {
     margin-bottom: 0.4rem;
     background-color: #f485f4db;
 }
-
+.betGroup{
+    display: flex;
+    gap: 1rem;
+}
 .bet-input-container input {
     flex: 1;
     margin: 0;
@@ -263,7 +266,6 @@ label {
     align-items: flex-start;
     margin: 5px auto;
     padding: 2rem 2rem;
-    max-width: 300px;
     background: #ffffffb8;
     border-radius: 12px;
     box-shadow: 0 8px 18px rgb(151 86 86 / 61%);
@@ -614,7 +616,8 @@ label {
   }
   .bet-quick-select {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    gap: 1.7rem;
     margin-bottom: 1rem;
   
 }

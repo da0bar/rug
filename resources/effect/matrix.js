@@ -222,10 +222,16 @@ document.addEventListener("DOMContentLoaded", function() {
     document.body.style.backgroundImage = `url(${backgrounds[Math.floor(Math.random() * backgrounds.length)]})`;
     const quickBetButtons = document.querySelectorAll(".quick-bet-btn");
     const betAmountInput = document.getElementById("betAmount");
+   
 
     quickBetButtons.forEach(button => {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", async function() {
+          
+            const betAmountInUsd = document.getElementById('betAmountInUsd');
+          
             betAmountInput.value = this.getAttribute("data-value");
+            const usdValue = await getEthPrice(parseFloat(betAmountInput.value))
+            betAmountInUsd.textContent = `≈ $${usdValue}`;
         });
     });
 });

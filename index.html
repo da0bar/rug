@@ -68,11 +68,14 @@
                     <input id="betValue" type="number" min="1" max="100" placeholder="Enter your number" required>
                 </div>
                 <label for="betAmount">Bet Amount</label>
-                <div class="bet-input-container">
-                    <input id="betAmount" type="text" placeholder="0.01" required>
-                    <span class="bet-unit">ETH</span>
+                <div class="betGroup">
+                    <div class="bet-input-container">
+                        <input id="betAmount" type="text" placeholder="0.01" required>
+                        <span class="bet-unit">ETH</span>
+                    </div>
+                    <p class="bet-usd" id="betAmountInUsd">≈ $0.00</p>
                 </div>
-                <p class="bet-usd" id="betAmountInUsd">≈ $0.00</p>
+              
                 <div class="bet-quick-select">
                     <button type="button" class="quick-bet-btn" data-value="0.001">Cuck</button>
                     <button type="button" class="quick-bet-btn" data-value="0.01">Half cuck</button>
@@ -88,11 +91,14 @@
                 <div class="token-info">
                     <span class="token-icon">🪙</span>
                     <span class="token-amount" id="pot">Fuck all</span>
+                    <span class="bet-usd" id="potInUsd">≈ $0.00</span>
                 </div>
                 <p class="token-title">Claimable amount (ETH)</p>
                 <div class="token-info">             
                     <span class="token-icon">💰</span>
                     <span class="token-amount" id="gameRewardz">Cuck no win?</span>
+                    <span class="bet-usd" id="claimInUsd">≈ $0.00</span>
+
                 </div>
             </div>
             <button type="button" class="button withdraw-btn" id="withdraw" disabled>Withdraw</button>
@@ -106,6 +112,8 @@
                 <div class="token-info">
                         <span class="token-icon">💰</span>
                         <span class="token-amount" id="userTokens">Bag is empty</span>
+                        <span class="bet-usd" id="rewardsInUsd">≈ $0.00</span>
+
                 </div>
             </div>
             <button type="button" class="button claim-rewards-btn" id="claimRewards" disabled>Give it to me</button>

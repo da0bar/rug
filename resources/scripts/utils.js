@@ -93,8 +93,22 @@ async function updateRewards(rewards, account) {
     const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(4);
     const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(4)
     const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
-
     const balance = ethers.utils.formatEther(getBalance)
+
+    const rewardsInput = document.getElementById('rewardsInUsd');
+    const claimInput = document.getElementById('claimInUsd');
+    const potInput = document.getElementById('potInUsd');
+    const usdValue = await getEthPrice()
+
+    rewardsInput.textContent = `≈ $${(rewardValue * usdValue).toFixed(1)}`;
+    claimInput.textContent = `≈ $${(gameRewardValue * usdValue).toFixed(1)}`;
+
+    potInput.textContent = `≈ $${(balance * usdValue).toFixed(1)}`;
+
+
+   
+    document.getElementById("pot").textContent = balance;
+
     document.getElementById("pot").textContent = balance;
 
     document.getElementById("userTokens").textContent = rewardValue;
@@ -132,8 +146,9 @@ async function handleRoundEnded(contract, winners, account) {
 async function getEthPrice(ethAmount) {
     try {
       const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+      let usdValue
       const data = await response.json();
-      const usdValue = ethAmount * data.ethereum.usd;
+      ethAmount ? usdValue = ethAmount * data.ethereum.usd : usdValue = data.ethereum.usd
 
       return usdValue.toFixed(1);
     } catch (error) {
@@ -142,9 +157,9 @@ async function getEthPrice(ethAmount) {
   }
 const betInput = document.getElementById('betAmount');
 
-betInput.addEventListener('input', () => {
+betInput.addEventListener('input', async() => {
     const betAmountInUsd = document.getElementById('betAmountInUsd');
-    const usdValue = getEthPrice(parseFloat(betInput.value))
+    const usdValue = await getEthPrice(parseFloat(betInput.value))
     betAmountInUsd.textContent = `≈ $${usdValue}`;
 });
 function checkWalletConnection() {
