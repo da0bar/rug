@@ -247,7 +247,7 @@ label {
 }
 .token-info{
     display: flex;
-    align-items: center;
+    align-items: baseline;;
     justify-content: center;
     gap: 8px;
     padding: 10px;
