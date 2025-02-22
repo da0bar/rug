@@ -86,13 +86,13 @@ async function updateGameState(contract) {
     player(activePlayersCount);
 }
 
-async function updateRewards(rewards, account, provider) {
+async function updateRewards(rewards, account, provider, contract_address) {
     const reward = await rewards.getRewardBalance(account);
     const gameReward = await contract.getRewardBalance(account);
 
     const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(6);
     const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(6)
-    const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
+    const getBalance = await provider.getBalance(contract_address);
 
     const balance = ethers.utils.formatEther(getBalance)
     document.getElementById("pot").textContent = balance;
