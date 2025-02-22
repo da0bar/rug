@@ -106,7 +106,9 @@ async function updateRewards(rewards, account) {
     potInput.textContent = `≈ $${(balance * usdValue).toFixed(1)}`;
 
 
-   rewardValue && (document.getElementById('currency').style.display = 'block')
+   rewardValue && (document.getElementById('currency1').style.display = 'block')
+   reward && (document.getElementById('currency2').style.display = 'block')
+   balance && (document.getElementById('currency3').style.display = 'block')
     document.getElementById("pot").textContent = balance;
 
     document.getElementById("pot").textContent = balance;
