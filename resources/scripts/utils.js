@@ -86,12 +86,12 @@ async function updateGameState(contract) {
     player(activePlayersCount);
 }
 
-async function updateRewards(rewards, account, provider, contract_address) {
+async function updateRewards(rewards, account) {
     const reward = await rewards.getRewardBalance(account);
     const gameReward = await contract.getRewardBalance(account);
 
-    const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(6);
-    const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(6)
+    const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(4);
+    const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(4)
     const getBalance = await provider.getBalance(contract_address);
 
     const balance = ethers.utils.formatEther(getBalance)
@@ -129,6 +129,24 @@ async function handleRoundEnded(contract, winners, account) {
     document.getElementById("betValue").value = "";
     document.getElementById("betAmount").value = "";
 }
+async function getEthPrice(ethAmount) {
+    try {
+      const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
+      const data = await response.json();
+      const usdValue = ethAmount * data.ethereum.usd;
+
+      return usdValue.toFixed(1);
+    } catch (error) {
+      console.error('Error fetching ETH price:', error);
+    }
+  }
+const betInput = document.getElementById('betAmount');
+
+betInput.addEventListener('input', () => {
+    const betAmountInUsd = document.getElementById('betAmountInUsd');
+    const usdValue = getEthPrice(parseFloat(betInput.value))
+    betAmountInUsd.textContent = `≈ $${usdValue}`;
+});
 function checkWalletConnection() {
     if (!signer || !contract) {
         showNotification("Connect your wallet first, cuck.", 3000, "error");
