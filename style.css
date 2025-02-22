@@ -270,7 +270,9 @@ label {
     border-radius: 12px;
     box-shadow: 0 8px 18px rgb(151 86 86 / 61%);
 }
-
+.currency{
+    display: none;
+}
 /* Styling the token icon */
 .token-icon {
     font-size: 2rem;

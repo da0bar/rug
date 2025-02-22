@@ -106,12 +106,12 @@ async function updateRewards(rewards, account) {
     potInput.textContent = `≈ $${(balance * usdValue).toFixed(1)}`;
 
 
-   
+   rewardValue && (document.getElementById('currency').style.display = 'block')
     document.getElementById("pot").textContent = balance;
 
     document.getElementById("pot").textContent = balance;
 
-    document.getElementById("userTokens").textContent = rewardValue + " ETH";
+    document.getElementById("userTokens").textContent = rewardValue;
     document.getElementById("claimRewards").disabled = reward.lte(0);
 
     document.getElementById("gameRewardz").textContent = gameRewardValue;
