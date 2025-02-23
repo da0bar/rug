@@ -204,7 +204,7 @@ function triggerRugged() {
  
 
     setTimeout(() => {
-        container.style.display = "block";
+        container.style.display = "flex";
         pathContainer.style.display = "block";
         textOverlay.style.display = "none";
         textOverlay.style.opacity = "0";

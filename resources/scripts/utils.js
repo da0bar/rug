@@ -93,7 +93,7 @@ async function updateRewards(rewards, account) {
     const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(4);
     const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(4)
     const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
-    const balance = ethers.utils.formatEther(getBalance)
+    const balance = ethers.utils.formatEther(getBalance).toFixed(4)
 
     const rewardsInput = document.getElementById('rewardsInUsd');
     const claimInput = document.getElementById('claimInUsd');
@@ -130,7 +130,9 @@ async function handleRoundEnded(contract, winners, account) {
     await updateGameState(contract);
     await updateRewards(rewards, account);
     initTimer();
+    if(!contract.bet().includes(account)) return
     const isWinner = winners.includes(ethers.utils.getAddress(account));
+
     showStack(
         isWinner ? "🫦 You won, ginormous CHAD" : "🤡 You lost. Because you are a cuck",
         isWinner ? "success" : "error"
