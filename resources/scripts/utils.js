@@ -80,10 +80,13 @@ async function initTimer() {
     
     timerStart(start);
 }
-async function updateGameState(contract) {
+async function updateGameState(contract, account) {
     const activePlayersCount = await contract.activePlayers();
-
-    player(activePlayersCount);
+    const inGame = playerInGame(contract, account)
+    player(activePlayersCount, inGame);
+}
+async function playerInGame(contract, account) {
+    return await contract.hasPlacedBet(account);
 }
 
 async function updateRewards(rewards, account) {
@@ -127,12 +130,12 @@ async function handleRoundEnded(contract, winners, account) {
     document.body.style.backgroundSize = "auto";
 
 
-    await updateGameState(contract);
+    await updateGameState(contract, account);
     await updateRewards(rewards, account);
     initTimer();
-    const inGame = await contract.hasPlacedBet(account);
+    const inGame = playerInGame(contract, account);
     if(!inGame) return;
-    
+
     const isWinner = winners.includes(ethers.utils.getAddress(account));
 
     showStack(

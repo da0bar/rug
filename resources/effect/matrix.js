@@ -40,14 +40,14 @@ const timer = {
 function timerStart(roundStart) {
     timer.start(Math.floor(roundStart/1000));
 }
-function player(activePlayerCount) {
+function player(activePlayerCount, inGame = false) {
     const playerCount = document.getElementById('player-count');
     const playerLight = document.getElementById('player-light');
     const isActive = activePlayerCount > 0;
     const status = document.getElementById("status");
     
     playerCount.innerHTML = activePlayerCount;
-    status.textContent = isActive ? "In game" : "Inactive";
+    status.textContent = inGame ? "In game" : "Inactive";
     playerLight.style.backgroundColor = isActive ? "green" : "red";
     playerLight.style.boxShadow = isActive ? "0 0 10px rgba(0, 255, 0, 0.8)" : "0 0 10px rgba(255, 0, 0, 0.8)";
 }

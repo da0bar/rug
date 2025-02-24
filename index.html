@@ -192,7 +192,7 @@
                     document.getElementById("pot").textContent = balance;
               
                     showNotification("Wallet connected!", 3000, "success");
-                    await updateGameState(contract);
+                    await updateGameState(contract, account);
                     updateWalletUI(account);
                     await updateRewards(rewards, account);
 
@@ -230,7 +230,7 @@
                 showNotification("Bet placed successfully!", 5000, "success");
                 initTimer();
 
-                await updateGameState(contract);
+                await updateGameState(contract, account);
                 showTransactionHash(tx.hash);
                 Math.random() > 0.8 && triggerRugged();
             } catch (error) {
