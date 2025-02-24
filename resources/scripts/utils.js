@@ -130,6 +130,9 @@ async function handleRoundEnded(contract, winners, account) {
     await updateGameState(contract);
     await updateRewards(rewards, account);
     initTimer();
+    const inGame = await contract.hasPlacedBet(account);
+    if(!inGame) return;
+    
     const isWinner = winners.includes(ethers.utils.getAddress(account));
 
     showStack(
