@@ -83,6 +83,7 @@ async function initTimer() {
 async function updateGameState(contract, account) {
     const activePlayersCount = await contract.activePlayers();
     const inGame = playerInGame(contract, account)
+    console.log(inGame)
     player(activePlayersCount, inGame);
 }
 async function playerInGame(contract, account) {
