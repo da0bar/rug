@@ -82,7 +82,7 @@ async function initTimer() {
 }
 async function updateGameState(contract, account) {
     const activePlayersCount = await contract.activePlayers();
-    const inGame = playerInGame(contract, account)
+    const inGame = await playerInGame(contract, account)
     console.log(inGame)
     player(activePlayersCount, inGame);
 }
@@ -134,7 +134,7 @@ async function handleRoundEnded(contract, winners, account) {
     await updateGameState(contract, account);
     await updateRewards(rewards, account);
     initTimer();
-    const inGame = playerInGame(contract, account);
+    const inGame = await playerInGame(contract, account);
     if(!inGame) return;
 
     const isWinner = winners.includes(ethers.utils.getAddress(account));
