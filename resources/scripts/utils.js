@@ -92,7 +92,7 @@ async function updateRewards(rewards, account) {
 
     const rewardValue = parseFloat(ethers.utils.formatEther(reward)).toFixed(4);
     const gameRewardValue = parseFloat(ethers.utils.formatEther(gameReward)).toFixed(4)
-    const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
+    const getBalance = await contract.roundPot();
     const balance = parseFloat(ethers.utils.formatEther(getBalance)).toFixed(4)
 
     const rewardsInput = document.getElementById('rewardsInUsd');
@@ -126,7 +126,6 @@ async function handleRoundEnded(contract, winners, account, playerInGame) {
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
 
-    console.log(playerInGame)
     await updateGameState(contract, account);
     await updateRewards(rewards, account);
     initTimer();
