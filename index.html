@@ -200,7 +200,7 @@
 
                     if (!contract.listenerCount("RoundEnded")) {
                         contract.on("RoundEnded", async (winningNumber, winners, tgIds, rewardPerWinner) => {
-                            handleRoundEnded(contract, winners, account);
+                            handleRoundEnded(contract, winners, account, playerInGame);
                             console.log(playerInGame)
 
                         });
