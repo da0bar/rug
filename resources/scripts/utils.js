@@ -83,7 +83,6 @@ async function initTimer() {
 async function updateGameState(contract, account) {
     const activePlayersCount = await contract.activePlayers();
     const inGame = await contract.hasPlacedBet(account)
-    console.log(inGame)
     player(activePlayersCount, inGame);
 }
 
@@ -127,7 +126,7 @@ async function handleRoundEnded(contract, winners, account, playerInGame) {
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
 
-
+    console.log(playerInGame)
     await updateGameState(contract, account);
     await updateRewards(rewards, account);
     initTimer();
