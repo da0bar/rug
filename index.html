@@ -166,6 +166,7 @@
         let rewards;
         let provider;
         let account;
+        let playerInGame;
         async function connectWallet() {
             if (!window.ethereum || !window.ethereum.isMetaMask) {
                 return showNotification("MetaMask not detected! Install MetaMask browser to use this app", 5000, "error");

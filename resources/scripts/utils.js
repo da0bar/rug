@@ -80,14 +80,14 @@ async function initTimer() {
     
     timerStart(start);
 }
-async function updateGameState(contract, account) {
+async function updateGameState(contract, playerIngame) {
     const activePlayersCount = await contract.activePlayers();
-    const inGame = await playerInGame(contract, account)
-    console.log(inGame)
-    player(activePlayersCount, inGame);
+    await setInGame(contract, account)
+    player(activePlayersCount, playerIngame);
 }
-async function playerInGame(contract, account) {
-    return await contract.hasPlacedBet(account);
+async function setInGame(contract, account) {
+    const result = await contract.hasPlacedBet(account);
+    playerInGame = result
 }
 
 async function updateRewards(rewards, account) {
