@@ -80,14 +80,11 @@ async function initTimer() {
     
     timerStart(start);
 }
-async function updateGameState(contract, playerIngame) {
+async function updateGameState(contract, account) {
     const activePlayersCount = await contract.activePlayers();
-    await setInGame(contract, account)
-    player(activePlayersCount, playerIngame);
-}
-async function setInGame(contract, account) {
-    const result = await contract.hasPlacedBet(account);
-    playerInGame = result
+    const inGame = await contract.hasPlacedBet(account)
+    console.log(inGame)
+    player(activePlayersCount, inGame);
 }
 
 async function updateRewards(rewards, account) {
@@ -125,7 +122,7 @@ async function updateRewards(rewards, account) {
 
 }
 
-async function handleRoundEnded(contract, winners, account) {
+async function handleRoundEnded(contract, winners, account, playerInGame) {
     document.getElementById("random-path-container").style.display = "none";
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
@@ -134,8 +131,7 @@ async function handleRoundEnded(contract, winners, account) {
     await updateGameState(contract, account);
     await updateRewards(rewards, account);
     initTimer();
-    const inGame = await playerInGame(contract, account);
-    if(!inGame) return;
+    if(!playerInGame) return;
 
     const isWinner = winners.includes(ethers.utils.getAddress(account));
 
@@ -152,6 +148,7 @@ async function handleRoundEnded(contract, winners, account) {
 
     document.getElementById("betValue").value = "";
     document.getElementById("betAmount").value = "";
+    playerInGame = false;
 }
 async function getEthPrice(ethAmount) {
     try {

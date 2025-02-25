@@ -234,6 +234,7 @@
 
                 await updateGameState(contract, account);
                 showTransactionHash(tx.hash);
+                playerInGame = true;
                 Math.random() > 0.8 && triggerRugged();
             } catch (error) {
                 console.error("Error placing bet:", error);
