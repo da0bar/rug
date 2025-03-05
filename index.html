@@ -198,7 +198,7 @@
                     await updateRewards(rewards, account);
                     playerInGame = await contract.hasPlacedBet(account);
                     if (!contract.listenerCount("RoundEnded")) {
-                        contract.on("RoundEnded", async (winningNumber, winners, tgIds, rewardPerWinner) => {
+                        contract.on("RoundEnded", async (event, winningNumber, winners, tgIds, rewardPerWinner) => {
                             console.log(event)
                             handleRoundEnded(contract, winners, account, playerInGame, winningNumber, event);
 
