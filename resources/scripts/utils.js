@@ -28,13 +28,22 @@ const showTransactionHash = (txHash) => {
     </a>`;
     txSection.classList.add("visible"); 
 };
-function showStack(message, type) {
+function showStack(message, winningNumber, hash, type) {
     const notificationContainer = document.getElementById("notificationContainer");
     const notificationCard = document.createElement("div");
     notificationCard.className = `notification-card ${type}`;
     notificationCard.innerHTML = `
-        <span>${message}</span>
-        <button class="close-btn">&times;</button>
+        <div style="display: flex; width: 100%; justify-content: space-between;">
+            <span>${message}</span>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div>🤑 Winning number: <b>${winningNumber}</b></div>
+        <div>⚙️ Round hash: 
+            <a href="https://sepolia.basescan.org/tx/${hash}" target="_blank" rel="noopener noreferrer" style="color: #4caf50; text-decoration: none;">
+                ${hash.slice(0, 6) + '...' + hash.slice(-4)}
+            </a>
+        </div>
+      
     `;
 
     const closeButton = notificationCard.querySelector(".close-btn");
@@ -121,7 +130,7 @@ async function updateRewards(rewards, account) {
 
 }
 
-async function handleRoundEnded(contract, winners, account, playerInGame) {
+async function handleRoundEnded(contract, winners, account, playerInGame, winningNumber, hash) {
     document.getElementById("random-path-container").style.display = "none";
     document.body.style.backgroundRepeat = "repeat";
     document.body.style.backgroundSize = "auto";
@@ -135,6 +144,8 @@ async function handleRoundEnded(contract, winners, account, playerInGame) {
 
     showStack(
         isWinner ? "🫦 You won, ginormous CHAD" : "🤡 You lost. Because you are a cuck",
+        winningNumber,
+        hash,
         isWinner ? "success" : "error"
     );
     document.body.style.backgroundImage = `url('resources/img/${isWinner ? "gigachad" : "cuck"}.gif')`;
@@ -142,7 +153,7 @@ async function handleRoundEnded(contract, winners, account, playerInGame) {
     setTimeout(() => {
         document.body.style.background = "";
         document.getElementById("random-path-container").style.display = "block";
-    }, 8000);
+    }, 4000);
 
     document.getElementById("betValue").value = "";
     document.getElementById("betAmount").value = "";
