@@ -199,7 +199,7 @@
                     playerInGame = await contract.hasPlacedBet(account);
                     if (!contract.listenerCount("RoundEnded")) {
                         contract.on("RoundEnded", async (winningNumber, winners, tgIds, rewardPerWinner) => {
-                            handleRoundEnded(contract, winners, account, playerInGame, winningNumber, event.transactionHash);
+                            handleRoundEnded(contract, winners, account, playerInGame, winningNumber, event.log.transactionHash);
 
                         });
                     }
