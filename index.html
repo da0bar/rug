@@ -169,10 +169,29 @@
                 input.value = '';
             }
         }
+        const chatbox = document.getElementById("chat-container");
+        const header = document.getElementById("chat-header");
+        let offsetX = 0, offsetY = 0, isDragging = false;
+
+        header.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            offsetX = e.clientX - chatbox.offsetLeft;
+            offsetY = e.clientY - chatbox.offsetTop;
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            chatbox.style.left = e.clientX - offsetX + "px";
+            chatbox.style.top = e.clientY - offsetY + "px";
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+        });
 
         socket.on('chatMessage', (data) => {
             const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML += `<p><strong>${data.id}:</strong> ${data.message}</p>`;
+            chatBox.innerHTML += `<p><strong> ${data.id.slice(0, 3) + '...' + data.id.slice(-4)}:</strong> ${data.message}</p>`;
             chatBox.scrollTop = chatBox.scrollHeight;
         });
 

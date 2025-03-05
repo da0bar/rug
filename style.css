@@ -67,6 +67,7 @@ h1 {
     bottom: 20px;
     left: 20px;
     width: 250px;
+    height:250px;
     background: silver;
     border: 2px solid #808080;
     box-shadow: inset -1px -1px 0px white, inset 1px 1px 0px #404040;
