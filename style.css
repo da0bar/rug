@@ -63,6 +63,7 @@ h1 {
 
 #chat-container {
     position: fixed;
+    z-index: 100;
     bottom: 20px;
     left: 20px;
     width: 250px;
