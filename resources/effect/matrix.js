@@ -211,7 +211,7 @@ function triggerRugged() {
         document.body.style.backgroundImage = "url('resources/img/rug_bg.jpg')";
        
         showNotification("Sweating much?!", 5000, "success");
-    }, 5000);
+    }, 4000);
 }
 document.addEventListener("DOMContentLoaded", function() {
     const backgrounds = [
