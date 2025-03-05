@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'MS Sans Serif';
+    src: url('https://fonts.cdnfonts.com/s/108737/MSSansSerif.woff') format('woff');
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -55,6 +60,66 @@ h1 {
       opacity: 0;
     }
   }
+
+#chat-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 250px;
+    background: silver;
+    border: 2px solid #808080;
+    box-shadow: inset -1px -1px 0px white, inset 1px 1px 0px #404040;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 12px;
+}
+
+#chat-header {
+    background: navy;
+    color: white;
+    padding: 4px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#close-chat {
+    background: silver;
+    border: 1px solid #404040;
+    color: black;
+    padding: 0 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#chat-box {
+    height: 150px;
+    overflow-y: auto;
+    background: white;
+    padding: 5px;
+    border-top: 2px solid #808080;
+    border-bottom: 2px solid #808080;
+}
+
+#chat-input-container {
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 3px;
+    border: 2px inset #808080;
+}
+
+#send-message {
+    background: silver;
+    border: 2px outset #808080;
+    padding: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
 .fountain-image {
     position: absolute;
     width: 60px; 
