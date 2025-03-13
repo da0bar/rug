@@ -75,6 +75,62 @@ h1 {
     font-size: 12px;
 }
 
+.hero-banner {
+    font-size: 16px;
+            font-weight: bold;
+            color: #B8860B;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+       
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-banner:hover {
+    transform: scale(1.4);
+
+}
+
+.info-button {
+    top: 0.5rem;
+    right: 0.5rem;
+
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position:absolute;
+}
+.info-modal {
+    display: none;
+    position: absolute;
+    top: 4rem;
+    right: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #dcdcdc;
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+    text-align: left;
+}
+.info-modal p {
+    margin: 0;
+}
+.info-modal ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.info-button.active {
+    background-color: #dcdcdc;
+}
+.info-modal li {
+    margin: 0.5rem 0;
+}
+.info-modal.active {
+    display: block;
+}
 #chat-header {
     background: navy;
     color: white;
@@ -135,6 +191,7 @@ h1 {
   }
 .container {
     display: flex;
+    position: relative;
     align-items: center;
     flex-direction: column;
     background: rgba(255, 255, 255, 0.9);
@@ -329,6 +386,7 @@ label {
 
 .token-display {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: flex-start;
     margin: 5px auto;
@@ -774,3 +832,41 @@ label {
         opacity: 0;
     }
 }
+.money-machine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+  }
+  
+  .spinner {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    background-color: #444;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 50px;
+  }
+  
+  @keyframes fallAndSpin {
+    0% {
+      top: -100px; /* Start above the screen */
+      transform: translateX(-50%) rotate(0deg);
+    }
+    50% {
+      top: 50%; /* Reaches the middle of the screen */
+      transform: translateX(-50%) rotate(1800deg); /* Spin 5 full rotations */
+    }
+    100% {
+      top: 50%; /* Ends at the middle */
+      transform: translateX(-50%) rotate(3600deg); /* Complete 10 full rotations */
+    }
+  }

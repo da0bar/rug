@@ -235,3 +235,37 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+function startSpin() {
+    // Create a new spinner each time the function is called
+    let spinnerElement = document.createElement('div');
+    spinnerElement.classList.add('spinner');
+  
+    // Generate a random number between 0 and 99 for the final number
+    let finalNumber = Math.floor(Math.random() * 100);
+    let spinNumberElement = document.createElement('span');
+    spinNumberElement.textContent = "0";  // Initial number
+  
+    spinnerElement.appendChild(spinNumberElement);
+    document.querySelector('.money-machine').appendChild(spinnerElement);
+  
+    // Set up the spinning and falling animation
+    spinnerElement.style.animation = `fallAndSpin 3s ease-out forwards`;
+  
+    // Simulate the number spinning and updating during the fall
+    let number = 0;
+    let interval = setInterval(() => {
+      spinNumberElement.textContent = number;
+      number = (number + 1) % 100; // Loop between 0-99
+    }, 100); // Change the number every 100ms
+  
+    // After 3 seconds, stop the animation and show the final number
+    setTimeout(() => {
+      clearInterval(interval);
+      spinNumberElement.textContent = finalNumber; // Final number displayed
+  
+      // Remove the spinner after the animation ends
+      setTimeout(() => {
+        spinnerElement.remove();
+      }, 500);  // Wait a bit before removing spinner to show final number
+    }, 3000); // After 3 seconds, stop and show the final number
+  }

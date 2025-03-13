@@ -33,6 +33,7 @@
             <div id="player-light" class="pulsating-light" ></div>
         </div>
       </div>
+   
     <div class="matrix">
         <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
         <div id="textOverlay">
@@ -54,9 +55,24 @@
     </div>
     <div id="transactionDetails" class="hidden"></div>
     <div class="container" id="container">
+        <button class="info-button" id="info-button" onclick="toggleModal('info-modal', 'info-button')">❓</button>
+        <div class="info-modal" id="info-modal">
+            <p><strong>How to Play</strong></p>
+            <ul>
+                <li>⚙️ Connect your wallet</li>
+                <li>🔢 Guess a number between 1 and 100</li>
+                <li>💸 Bet all your savings on it</li>
+                <li>🏆 Win the pot if you guess the number   <span style="margin-left: 1.5rem;">(see pot tab for more info)</span></li>
+                <li>💰 Earn money by holding RUG token   <span style="margin-left: 1.5rem;">(see reward tab for more info)</span></li>
+            </ul>
+        </div>
         <div>
             <h1 id="title">GET RUGGED</h1>
             <p id="subtitle">Trump lauched <span id="trumpCount">0</span></p>
+      
+        </div>
+        <div class="hero-banner">
+            Guess the Number. Rug everyone. Leave.
         </div>
         <button class="connect-wallet-btn" id="connectWallet">
             <div>
@@ -99,6 +115,30 @@
         <div class="tab" id="tabContentWithdraw">
 
             <div id="tokenDisplay" class="token-display">
+                <button class="info-button" id="info-pot" onclick="toggleModal('pot-modal', 'info-pot')">🎰</button>
+                <div class="info-modal" id="pot-modal">
+                    <p><strong>Game Rules</strong></p>
+                    <ul>
+                        <li><p style="display:inline-block">🕹</p> 
+                            <span style="font-size: 18px;text-decoration: underline;">If you win alone</span><br/>
+                      
+                            <p style="padding-left:18px;margin-bottom: 5px;">- You win the <strong>whole pot</strong> if your bet x 99 <br/> is <strong>above</strong> the pot  </p>
+                            <p style="padding-left:18px">- You win <strong>99 x your bet</strong> if your bet x 99 <br/> is <strong>below</strong> the pot  <br/></p>
+                        </span></li>
+                        <li><p style="display:inline-block">🕹</p> 
+                            <span style="font-size: 18px;text-decoration: underline;">If you win with others</span><br/>
+                             <p style="padding-left:18px;margin-bottom: 5px;">
+                                - The pot is divided by the number of winners  <br/>
+                            </p> 
+                                <p style="padding-left:18px;">
+                                - But if your bet x 99 is <strong>below</strong> your <br/>share of the pot, the remainder is redistributed to the other winners <br/>
+                            </p> 
+                                <p style="padding-left:18px">
+                                If their bet x 99 is <strong>above</strong> their share of the pot  <br/>
+                            </p> 
+                            </span></li>
+                    </ul>
+                </div>
                 <p class="token-title">Total</p>
                 <div class="token-info">
                     <span class="token-icon">🪙</span>
@@ -123,6 +163,16 @@
                 <p>You capitalist scum</p>
             </div>
             <div id="tokenDisplay" class="token-display">
+                <button class="info-button" id="info-reward" onclick="toggleModal('reward-modal', 'info-reward')">💎</button>
+                <div class="info-modal" id="reward-modal">
+                    <p><strong>Game Rewards</strong></p>
+                    <ul>
+                        <li>💰 Earn money by simply holding RUG <span style="margin-left: 1.5rem;">token</span></li>
+                        <li>💵 Each round 15% of the pot is <span style="margin-left: 1.5rem;">redistributed to holders</span></li>
+                        <li>💲 Your rewards are calculated based on <span style="margin-left: 1.5rem;">the amount of RUG you hold</span></li>
+                        <li>💸 You can claim the money once a <span style="margin-left: 1.5rem;">month</span></li>
+                    </ul>
+                </div>
                 <div class="token-info">
                         <span class="token-icon">💰</span>
                         <span class="token-amount" id="userTokens">Bag is empty</span>
@@ -155,6 +205,15 @@
         const tabContentWithdraw = document.getElementById("tabContentWithdraw");
         const tabContentGameRewards = document.getElementById("tabContentGameRewards");
 
+        const infoButton = document.querySelector('.info-button');
+        const infoModal = document.getElementById('info-modal');
+
+        function toggleModal(modal, button) {
+            const mo = document.getElementById(modal);
+            const bu = document.getElementById(button);
+            mo.classList.toggle('active');
+            bu.classList.toggle('active');
+        }
 
         document.getElementById('send-message').addEventListener('click', sendMessage);
         document.getElementById('chat-input').addEventListener('keypress', (e) => {
