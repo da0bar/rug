@@ -18,9 +18,9 @@ const timer = {
 
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
             if (timeLeft <= 10) {
-                remainingTimeElement.classList.add('flashing');
+                document.getElementById('remaining-time').classList.add('flashing');
             } else {
-                remainingTimeElement.classList.remove('flashing'); 
+                document.getElementById('remaining-time').classList.remove('flashing'); 
             }
             const player = document.getElementById('player-count');
             const playerCount = parseInt(player.innerHTML);
