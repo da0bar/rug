@@ -259,6 +259,9 @@ function roulette() {
       diva.style.transition = `top ${duration}s ease-out`;
       diva.style.top = `${middle}px`; 
       setTimeout(() => {
+        diva.innerHTML = `<div class="spinner"></div>`; 
+        document.getElementById('falling-number1').innerHTML = `<div class="spinner"></div>`;
+
           diva.style.transition = 'top 0.2s ease-in-out';
           diva.style.top = `${middle}px`; 
           clearInterval(numberInterval);
