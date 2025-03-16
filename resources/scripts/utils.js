@@ -131,9 +131,11 @@ async function updateRewards(rewards, account) {
 }
 
 async function handleRoundEnded(contract, winners, account, playerInGame, winningNumber, hash) {
-    document.getElementById("random-path-container").style.display = "none";
-    document.body.style.backgroundRepeat = "repeat";
-    document.body.style.backgroundSize = "auto";
+    // document.getElementById("random-path-container").style.display = "none";
+    // document.body.style.backgroundRepeat = "repeat";
+    // document.body.style.backgroundSize = "auto";
+    const number1 = document.getElementById('falling-number1');
+    const number2 = document.getElementById('falling-number2');
 
     await updateGameState(contract, account);
     await updateRewards(rewards, account);
@@ -141,19 +143,29 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
     if(!playerInGame) return;
 
     const isWinner = winners.includes(ethers.utils.getAddress(account));
-
+    const winningNum = winningNumber.toString();
     showStack(
         isWinner ? "🫦 You won, ginormous CHAD" : "🤡 You lost. Because you are a cuck",
         winningNumber,
         hash,
         isWinner ? "success" : "error"
     );
-    document.body.style.backgroundImage = `url('resources/img/${isWinner ? "gigachad" : "cuck"}.gif')`;
+    if (winningNum.length === 1) {
+        number1.textContent = "0"; // Show 0 in the first slot
+        number2.textContent = winningNum; // Show the single digit in the second slot
+    } else {
+        number1.textContent = winningNum.charAt(0); // First digit
+        number2.textContent = winningNum.charAt(1); // Second digit
+    }
+  
+    //document.body.style.backgroundImage = `url('resources/img/${isWinner ? "gigachad" : "cuck"}.gif')`;
 
     setTimeout(() => {
-        document.body.style.background = "";
-        document.getElementById("random-path-container").style.display = "block";
-    }, 4000);
+        // document.body.style.background = "";
+        // document.getElementById("random-path-container").style.display = "block";
+        number1.style.top = "-170px"
+         number2.style.top = "-170px"
+    }, 8000);
 
     document.getElementById("betValue").value = "";
     document.getElementById("betAmount").value = "";

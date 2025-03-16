@@ -832,41 +832,27 @@ label {
         opacity: 0;
     }
 }
-.money-machine {
+.falling-number{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: -170px;
+    font-size: 7rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    padding: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.5);
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
   }
-  
-  .spinner {
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    background-color: #444;
-    padding: 10px 20px;
-    border-radius: 10px;
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 50px;
+  #falling-number1{
+    left: 20%;
   }
-  
-  @keyframes fallAndSpin {
-    0% {
-      top: -100px; /* Start above the screen */
-      transform: translateX(-50%) rotate(0deg);
-    }
-    50% {
-      top: 50%; /* Reaches the middle of the screen */
-      transform: translateX(-50%) rotate(1800deg); /* Spin 5 full rotations */
-    }
-    100% {
-      top: 50%; /* Ends at the middle */
-      transform: translateX(-50%) rotate(3600deg); /* Complete 10 full rotations */
-    }
+  #falling-number2{
+    right: 20%;
   }

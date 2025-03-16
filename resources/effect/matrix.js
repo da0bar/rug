@@ -19,6 +19,9 @@ const timer = {
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
             const player = document.getElementById('player-count');
             const playerCount = parseInt(player.innerHTML);
+            if(timeLeft <= 10 && playerCount > 0) {
+                roulette();
+            }
             if (timeLeft < 0){ 
                 playerLight.style.backgroundColor = "yellow";
                 status.textContent = "Calling smart contract...";
@@ -235,37 +238,56 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-function startSpin() {
-    // Create a new spinner each time the function is called
-    let spinnerElement = document.createElement('div');
-    spinnerElement.classList.add('spinner');
-  
-    // Generate a random number between 0 and 99 for the final number
-    let finalNumber = Math.floor(Math.random() * 100);
-    let spinNumberElement = document.createElement('span');
-    spinNumberElement.textContent = "0";  // Initial number
-  
-    spinnerElement.appendChild(spinNumberElement);
-    document.querySelector('.money-machine').appendChild(spinnerElement);
-  
-    // Set up the spinning and falling animation
-    spinnerElement.style.animation = `fallAndSpin 3s ease-out forwards`;
-  
-    // Simulate the number spinning and updating during the fall
-    let number = 0;
-    let interval = setInterval(() => {
-      spinNumberElement.textContent = number;
-      number = (number + 1) % 100; // Loop between 0-99
-    }, 100); // Change the number every 100ms
-  
-    // After 3 seconds, stop the animation and show the final number
-    setTimeout(() => {
-      clearInterval(interval);
-      spinNumberElement.textContent = finalNumber; // Final number displayed
-  
-      // Remove the spinner after the animation ends
+
+
+function roulette() {
+    const number1 = document.getElementById('falling-number1');
+    const number2 = document.getElementById('falling-number2');
+
+    const containe = document.querySelector('body');
+    const fallDistance = containe.clientHeight;
+    let duration = 0.2; 
+    let totalTime = 0;
+    const middle = containe.clientHeight / 2 -100; 
+    let delayBetween = 150;
+
+  function fallStep(diva) {
+    const numberInterval = setInterval(()=> spinNumber(), 250 * (duration * 0.45)); 
+
+    if (totalTime + duration >= 20) {
+      
+      diva.style.transition = `top ${duration}s ease-out`;
+      diva.style.top = `${middle}px`; 
       setTimeout(() => {
-        spinnerElement.remove();
-      }, 500);  // Wait a bit before removing spinner to show final number
-    }, 3000); // After 3 seconds, stop and show the final number
+          diva.style.transition = 'top 0.2s ease-in-out';
+          diva.style.top = `${middle}px`; 
+          clearInterval(numberInterval);
+      }, duration * 1000);
+      return;
+    }
+      
+        diva.style.transition = `top ${duration}s linear`;
+        diva.style.top = `${fallDistance}px`;
+      setTimeout(() => {
+        clearInterval(numberInterval); 
+
+          diva.style.transition = 'none';
+          diva.style.top = '-50px';
+  
+          duration *= 1.2;
+          totalTime += duration;
+  
+          setTimeout(() => fallStep(diva), 50); 
+      }, duration * 1000); 
+      }
+    fallStep(number1); 
+    spinNumber();
+    setTimeout(() => fallStep(number2), delayBetween);
+ function spinNumber() {
+    const rand = Math.floor(Math.random() * 10);
+    const rand2 = Math.floor(Math.random() * 10);
+
+    number1.textContent = rand;
+    number2.textContent = rand2;
   }
+}
