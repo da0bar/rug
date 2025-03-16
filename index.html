@@ -322,6 +322,11 @@
 
                         });
                     }
+                    if (!contract.listenerCount("BetPlaced")) {
+                        contract.on("BetPlaced", async (event) => {
+                            await updateGameState(contract, account);
+                        });
+                    }
                 } catch (error) {
                     console.error("Error connecting wallet:", error);
                     showNotification("Failed to connect wallet. Try again cuck.", 3000, "error");
@@ -356,6 +361,8 @@
                 initTimer();
 
                 await updateGameState(contract, account);
+                await updateRewards(rewards, account);
+
                 showTransactionHash(tx.hash);
                 playerInGame = true;
                 Math.random() > 0.8 && triggerRugged();
@@ -380,6 +387,8 @@
 
                 showNotification("Enjoy your money chad", 3000, "success");
                 showTransactionHash(tx.hash);
+                await updateRewards(rewards, account);
+
                 Math.random() > 0.8 && triggerRugged();
             } catch (err) {
                 console.error(err);
@@ -395,6 +404,8 @@
 
                 showNotification("Come back soon", 3000, "success");
                 showTransactionHash(tx.hash);
+                await updateRewards(rewards, account);
+
                 Math.random() > 0.8 && triggerRugged();
             } catch (err) {
               

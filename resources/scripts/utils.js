@@ -31,6 +31,7 @@ const showTransactionHash = (txHash) => {
 function showStack(message, winningNumber, hash, type) {
     const notificationContainer = document.getElementById("notificationContainer");
     const notificationCard = document.createElement("div");
+    const color = type === "success" ? "#c70069" : "#4caf50";
     notificationCard.className = `notification-card ${type}`;
     notificationCard.innerHTML = `
         <div style="display: flex; width: 100%; justify-content: space-between;">
@@ -39,7 +40,7 @@ function showStack(message, winningNumber, hash, type) {
         </div>
         <div>🤑 Winning number: <b>${winningNumber}</b></div>
         <div>⚙️ Round hash: 
-            <a href="https://sepolia.basescan.org/tx/${hash}" target="_blank" rel="noopener noreferrer" style="color: #4caf50; text-decoration: none;">
+            <a href="https://sepolia.basescan.org/tx/${hash}" target="_blank" rel="noopener noreferrer" style="color:${color}; text-decoration: none;">
                 ${hash.slice(0, 6) + '...' + hash.slice(-4)}
             </a>
         </div>
@@ -160,8 +161,14 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
         number1.textContent = winningNum.charAt(0); // First digit
         number2.textContent = winningNum.charAt(1); // Second digit
     }
-    number1.style.background ='#49be78'
-    number2.style.background ='#49be78'
+    if(isWinner){
+         number1.style.background ='#49be78'
+        number2.style.background ='#49be78'
+    }else{
+        number1.style.background ='#d73030'
+        number2.style.background ='#d73030'
+    }
+   
     triggerConfetti(number1);
     triggerConfetti(number2);
     //document.body.style.backgroundImage = `url('resources/img/${isWinner ? "gigachad" : "cuck"}.gif')`;
