@@ -11,7 +11,7 @@ const timer = {
             const currentTime = Math.floor(Date.now() / 1000);
             const elapsedTime = currentTime - roundStart;
             const timeLeft = ROUND_DURATION - elapsedTime;
-
+            let isRoulette = false;
 
             const playerLight = document.getElementById("player-light");
             const status = document.getElementById("status");
@@ -19,7 +19,8 @@ const timer = {
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
             const player = document.getElementById('player-count');
             const playerCount = parseInt(player.innerHTML);
-            if(timeLeft == 7 && playerCount > 0) {
+            if(timeLeft <= 5 && playerCount > 0 && !isRoulette) {
+                isRoulette = true;
                 roulette();
             }
             if (timeLeft < 0){ 
@@ -243,6 +244,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function roulette() {
     const number1 = document.getElementById('falling-number1');
     const number2 = document.getElementById('falling-number2');
+    number1.style.background = 'linear-gradient(135deg, #bdcdde, #122c31)';
+    number2.style.background = 'linear-gradient(135deg, #bdcdde, #122c31)';
 
     const containe = document.querySelector('body');
     const fallDistance = containe.clientHeight;
