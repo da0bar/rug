@@ -5,18 +5,23 @@ const timer = {
     start(roundStart) {
         if (this.interval) clearInterval(this.interval);
         if (roundStart === 0) return;
-
+        let isRoulette = false;
         const updateTimer = () => {
             
             const currentTime = Math.floor(Date.now() / 1000);
             const elapsedTime = currentTime - roundStart;
             const timeLeft = ROUND_DURATION - elapsedTime;
-            let isRoulette = false;
+          
 
             const playerLight = document.getElementById("player-light");
             const status = document.getElementById("status");
 
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
+            if (timeLeft <= 10) {
+                remainingTimeElement.classList.add('flashing');
+            } else {
+                remainingTimeElement.classList.remove('flashing'); 
+            }
             const player = document.getElementById('player-count');
             const playerCount = parseInt(player.innerHTML);
             if(timeLeft <= 5 && playerCount > 0 && !isRoulette) {
@@ -26,7 +31,7 @@ const timer = {
             if (timeLeft < 0){ 
                 playerLight.style.backgroundColor = "yellow";
                 status.textContent = "Calling smart contract...";
-                clearInterval(this.interval); // Stop the timer first
+                clearInterval(this.interval); 
 
                 if (playerCount < 1) {  
                     handleNoPlayers();

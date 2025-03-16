@@ -869,3 +869,18 @@ label {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+@keyframes flash {
+    0% {
+        color: red;
+    }
+    50% {
+        color: yellow;
+    }
+    100% {
+        color: red;
+    }
+}
+
+.flashing {
+    animation: flash 1s infinite;
+}
