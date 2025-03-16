@@ -19,7 +19,7 @@ const timer = {
             document.getElementById('remaining-time').innerHTML = timeLeft >= 0 ? formatTime(timeLeft) : "00:00";
             const player = document.getElementById('player-count');
             const playerCount = parseInt(player.innerHTML);
-            if(timeLeft == 10 && playerCount > 0) {
+            if(timeLeft == 7 && playerCount > 0) {
                 roulette();
             }
             if (timeLeft < 0){ 

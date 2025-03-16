@@ -150,6 +150,9 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
         hash,
         isWinner ? "success" : "error"
     );
+    number1.style.background ='#49be78'
+    number2.style.background ='#49be78'
+
     if (winningNum.length === 1) {
         number1.textContent = "0"; // Show 0 in the first slot
         number2.textContent = winningNum; // Show the single digit in the second slot
@@ -157,7 +160,10 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
         number1.textContent = winningNum.charAt(0); // First digit
         number2.textContent = winningNum.charAt(1); // Second digit
     }
-  
+    number1.style.background ='#49be78'
+    number2.style.background ='#49be78'
+    triggerConfetti(number1);
+    triggerConfetti(number2);
     //document.body.style.backgroundImage = `url('resources/img/${isWinner ? "gigachad" : "cuck"}.gif')`;
 
     setTimeout(() => {
@@ -196,4 +202,16 @@ function checkWalletConnection() {
         return false;
     }
     return true;
+}
+function triggerConfetti(element) {
+    const rect = element.getBoundingClientRect(); 
+    confetti({
+        particleCount: 100, 
+        spread: 60, 
+        startVelocity: 30, 
+        origin: {
+            x: (rect.left + rect.width / 2) / window.innerWidth,
+            y: (rect.top + rect.height / 2) / window.innerHeight, 
+        }
+    });
 }
