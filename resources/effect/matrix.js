@@ -31,6 +31,10 @@ const timer = {
             if (timeLeft < 0){ 
                 playerLight.style.backgroundColor = "yellow";
                 status.textContent = "Calling smart contract...";
+                setTimeout(() => { 
+                    status.textContent = "Awaiting decision...";
+                }, 2000);
+
                 clearInterval(this.interval); 
 
                 if (playerCount < 1) {  
@@ -258,7 +262,9 @@ function roulette() {
     let totalTime = 0;
     const middle = containe.clientHeight / 2 -100; 
     let delayBetween = 150;
-
+    document.getElementById("random-path-container").style.display = "none";
+    document.body.style.backgroundRepeat = "repeat";
+    document.body.style.backgroundSize = "auto";
   function fallStep(diva) {
     const numberInterval = setInterval(()=> spinNumber(), 250 * (duration * 0.45)); 
 
@@ -267,11 +273,13 @@ function roulette() {
       diva.style.transition = `top ${duration}s ease-out`;
       diva.style.top = `${middle}px`; 
       setTimeout(() => {
-        diva.innerHTML = `<div class="spinner"></div>`; 
-        document.getElementById('falling-number1').innerHTML = `<div class="spinner"></div>`;
+            diva.innerHTML = `<div class="spinner"></div>`; 
+            document.getElementById('falling-number1').innerHTML = `<div class="spinner"></div>`;
 
-          diva.style.transition = 'top 0.2s ease-in-out';
-          diva.style.top = `${middle}px`; 
+            diva.style.transition = 'top 0.2s ease-in-out';
+            diva.style.top = `${middle}px`; 
+            document.body.style.background = "";
+            document.getElementById("random-path-container").style.display = "block";
           clearInterval(numberInterval);
       }, duration * 1000);
       return;
