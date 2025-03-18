@@ -135,7 +135,7 @@ function createPoppingImage(rect, imageSrc) {
         Math.random() * 360 - 180
     ];
 
-    img.style.left = `${rect.left + rect.width / 2}px`;
+    img.style.left = `${rect.width / 2}px`;
     img.style.top = `${rect.top-30}px`;
 
     img.style.setProperty('--randomX', `${randomX}px`);
