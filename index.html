@@ -355,7 +355,7 @@
                 const tx = await contract.placeBet(Number(betValue), u, {
                     value: ethers.utils.parseEther(betAmount),
                 });
-                showNotification("Transaction sent, waiting for confirmation...", 3000, "success");
+                showNotification("Transaction sent, waiting for confirmation...", 3000, "info");
                 await tx.wait();
                 showNotification("Bet placed successfully!", 5000, "success");
                 initTimer();

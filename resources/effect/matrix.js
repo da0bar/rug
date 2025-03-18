@@ -27,7 +27,7 @@ const timer = {
             if(timeLeft <= 5 && playerCount > 0 && !isRoulette) {
                 isRoulette = true;
                 status.textContent = "Launching roulette...";
-
+                playerLight.style.backgroundColor = "blue";
                 roulette();
             }
             if (timeLeft < 0){ 

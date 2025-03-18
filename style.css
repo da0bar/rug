@@ -436,6 +436,11 @@ label {
     color: #fff;
     box-shadow: 0 4px 8px rgba(0, 128, 0, 0.5);
 }
+.info {
+    background-color: #007bff; /* Green */
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(11, 66, 161, 0.5);
+}
 
 .error {
     background-color: rgba(255, 0, 0, 1); /* Red */
@@ -828,11 +833,11 @@ label {
     }
 }
 .falling-number{
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     position: absolute;
     top: -170px;
-    font-size: 7rem;
+    font-size: 9rem;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     background: linear-gradient(135deg, #bdcdde, #122c31);
