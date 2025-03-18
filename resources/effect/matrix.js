@@ -26,6 +26,8 @@ const timer = {
             const playerCount = parseInt(player.innerHTML);
             if(timeLeft <= 5 && playerCount > 0 && !isRoulette) {
                 isRoulette = true;
+                status.textContent = "Launching roulette...";
+
                 roulette();
             }
             if (timeLeft < 0){ 
@@ -263,8 +265,7 @@ function roulette() {
     const middle = containe.clientHeight / 2 -100; 
     let delayBetween = 150;
     document.getElementById("random-path-container").style.display = "none";
-    document.body.style.backgroundRepeat = "repeat";
-    document.body.style.backgroundSize = "auto";
+
   function fallStep(diva) {
     const numberInterval = setInterval(()=> spinNumber(), 250 * (duration * 0.45)); 
 
@@ -278,8 +279,7 @@ function roulette() {
 
             diva.style.transition = 'top 0.2s ease-in-out';
             diva.style.top = `${middle}px`; 
-            document.body.style.background = "";
-            document.getElementById("random-path-container").style.display = "block";
+          
           clearInterval(numberInterval);
       }, duration * 1000);
       return;

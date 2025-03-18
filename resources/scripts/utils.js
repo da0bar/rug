@@ -175,7 +175,8 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
 
     setTimeout(() => {
         // document.body.style.background = "";
-        // document.getElementById("random-path-container").style.display = "block";
+
+        document.getElementById("random-path-container").style.display = "block";
         number1.style.top = "-170px"
          number2.style.top = "-170px"
     }, 8000);
