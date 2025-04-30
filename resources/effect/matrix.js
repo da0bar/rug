@@ -270,7 +270,7 @@ function roulette() {
 
     let spinDuration = 7000; // How long to spin (ms)
     let intervalSpeed = 70;
-    const blinkSpeeds = [600, 400, 300]; // blink faster as time runs out
+    const blinkSpeeds = [800, 650, 500]; // blink faster as time runs out
 
     console.log("Spinning started");
     function spinNumber() {
