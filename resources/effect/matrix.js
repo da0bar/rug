@@ -255,58 +255,80 @@ document.addEventListener("DOMContentLoaded", function() {
 function roulette() {
     const number1 = document.getElementById('falling-number1');
     const number2 = document.getElementById('falling-number2');
-    number1.style.background = 'linear-gradient(135deg, #bdcdde, #122c31)';
-    number2.style.background = 'linear-gradient(135deg, #bdcdde, #122c31)';
-
     const containe = document.querySelector('body');
-    const fallDistance = containe.clientHeight;
-    let duration = 0.2; 
-    let totalTime = 0;
+ 
+    number1.style.background = '';
+    number2.style.background = '';
+
     const middle = containe.clientHeight / 2 -100; 
-    let delayBetween = 150;
+ 
     document.getElementById("random-path-container").style.display = "none";
+    number1.style.transition = 'top 0.2s ease-in-out';
+    number1.style.top = `${middle}px`; 
+    number2.style.transition = 'top 0.2s ease-in-out';
+    number2.style.top = `${middle}px`; 
 
-  function fallStep(diva) {
-    const numberInterval = setInterval(()=> spinNumber(), 250 * (duration * 0.45)); 
+    let spinDuration = 10000; // How long to spin (ms)
+    let intervalSpeed = 70;
+    const blinkSpeeds = [700, 500, 200]; // blink faster as time runs out
 
-    if (totalTime + duration >= 20) {
-      
-      diva.style.transition = `top ${duration}s ease-out`;
-      diva.style.top = `${middle}px`; 
-      setTimeout(() => {
-            diva.innerHTML = `<div class="spinner"></div>`; 
-            document.getElementById('falling-number1').innerHTML = `<div class="spinner"></div>`;
-
-            diva.style.transition = 'top 0.2s ease-in-out';
-            diva.style.top = `${middle}px`; 
-          
-          clearInterval(numberInterval);
-      }, duration * 1000);
-      return;
+    console.log("Spinning started");
+    function spinNumber() {
+        const rand = Math.floor(Math.random() * 10);
+        const rand2 = Math.floor(Math.random() * 10);
+        number1.textContent = rand;
+        number2.textContent = rand2;
     }
-      
-        diva.style.transition = `top ${duration}s linear`;
-        diva.style.top = `${fallDistance}px`;
-      setTimeout(() => {
-        clearInterval(numberInterval); 
 
-          diva.style.transition = 'none';
-          diva.style.top = '-50px';
-  
-          duration *= 1.2;
-          totalTime += duration;
-  
-          setTimeout(() => fallStep(diva), 50); 
-      }, duration * 1000); 
-      }
-    fallStep(number1); 
-    spinNumber();
-    setTimeout(() => fallStep(number2), delayBetween);
- function spinNumber() {
-    const rand = Math.floor(Math.random() * 10);
-    const rand2 = Math.floor(Math.random() * 10);
+    // Start spinning
+    const spinInterval = setInterval(spinNumber, intervalSpeed);
+    let blinkInterval;
+    let blinkState = false;
+    let elapsed = 0;
 
-    number1.textContent = rand;
-    number2.textContent = rand2;
-  }
+    function startBlinking(blinkSpeed) {
+        blinkInterval = setInterval(() => {
+            blinkState = !blinkState;
+            const bg = blinkState
+                ? 'linear-gradient(135deg, #bdcdde, #122c31)'
+                : 'linear-gradient(135deg, #122c31, #bdcdde)';
+            number1.style.background = bg;
+            number2.style.background = bg;
+        }, blinkSpeed); // Start slow
+    }
+
+    function adjustBlinkSpeed() {
+        if (elapsed === spinDuration * 0.66 ) {
+            clearInterval(blinkInterval);
+            startBlinking(blinkSpeeds[2]); // Fast blink
+        } else if (elapsed === spinDuration * 0.33 ) {
+            clearInterval(blinkInterval);
+            startBlinking(blinkSpeeds[1]); // Fast blink
+        }
+        else if (elapsed === spinDuration ) {
+            clearInterval(blinkInterval);
+        }
+    }
+
+        if(elapsed <100){
+            startBlinking(blinkSpeeds[0]); // Start slow
+        }
+
+    // Track elapsed time to adjust blink speed
+    const timer = setInterval(() => {
+        elapsed += 100;
+
+        adjustBlinkSpeed();
+    }, 100);
+    // Stop spinning after duration
+    setTimeout(() => {
+        clearInterval(spinInterval);
+        clearInterval(blinkInterval);
+        clearInterval(timer);
+
+        number1.innerHTML = `<div class="spinner"></div>`;
+        number2.innerHTML = `<div class="spinner"></div>`;
+        document.getElementById("random-path-container").style.display = "block";
+
+    }, spinDuration);
 }

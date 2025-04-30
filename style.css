@@ -884,3 +884,58 @@ label {
 .flashing {
     animation: flash 1s infinite;
 }
+.play-button-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .play-ruggar {
+    position: relative;
+    display: inline-block;
+    padding: 16px 36px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #00d2ff, #3a47d5);
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+  }
+  
+  .play-ruggar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 10%, transparent 10.01%);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+    pointer-events: none;
+  }
+  
+  .play-ruggar:hover::before {
+    transform: translate(-50%, -50%) scale(4);
+  }
+  
+  .play-ruggar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 210, 255, 0.6);
+  }
+  
+  .play-ruggar:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 10px rgba(0, 210, 255, 0.3);
+  }
