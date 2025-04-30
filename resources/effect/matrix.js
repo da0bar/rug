@@ -268,9 +268,9 @@ function roulette() {
     number2.style.transition = 'top 0.2s ease-in-out';
     number2.style.top = `${middle}px`; 
 
-    let spinDuration = 10000; // How long to spin (ms)
+    let spinDuration = 7000; // How long to spin (ms)
     let intervalSpeed = 70;
-    const blinkSpeeds = [700, 500, 200]; // blink faster as time runs out
+    const blinkSpeeds = [600, 400, 300]; // blink faster as time runs out
 
     console.log("Spinning started");
     function spinNumber() {
