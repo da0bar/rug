@@ -834,7 +834,7 @@ label {
 }
 .falling-number {
     position: absolute;
-    font-size: 20rem;
+    font-size: 30rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 900;
     color: white;
@@ -844,11 +844,11 @@ label {
 }
 
 #falling-number1 {
-    left: 20%;
+    left: 10%;
 }
 
 #falling-number2 {
-    right: 20%;
+    right: 10%;
 }
 
 @keyframes spin {
