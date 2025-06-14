@@ -17,7 +17,8 @@
         <p id="notificationMessage"></p>
     </div>
     <div id="random-path-container" class="random-path-container"></div>
-   
+   <div class="falling-number" id="falling-number1">0</div>
+    <div class="falling-number" id="falling-number2">0</div>
     <div id="notificationContainer"></div>
     <div id="status-indicator">
         <div>
@@ -39,8 +40,7 @@
     <a href="https://ruggar.rugprotocol.ai" class="play-ruggar" target="_blank">GO RUGGAR</a>
     </div>
     <div class="matrix">
-        <div class="falling-number" id="falling-number1">0</div>
-        <div class="falling-number" id="falling-number2">0</div>
+        
         <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
         <div id="textOverlay">
             <span class="fade-text small">YOU'VE</span>
@@ -428,6 +428,7 @@
             if (localStorage.getItem("walletConnected") === "true") {
                 await connectWallet();
             }
+            roulette();
         });
         window.ethereum?.on("accountsChanged", async (accounts) => {
             if (accounts.length === 0) {

@@ -5,7 +5,6 @@ const timer = {
     start(roundStart) {
         if (this.interval) clearInterval(this.interval);
         if (roundStart === 0) return;
-        let isRoulette = false;
         const updateTimer = () => {
             
             const currentTime = Math.floor(Date.now() / 1000);
@@ -24,11 +23,9 @@ const timer = {
             }
             const player = document.getElementById('player-count');
             const playerCount = parseInt(player.innerHTML);
-            if(timeLeft <= 5 && playerCount > 0 && !isRoulette) {
-                isRoulette = true;
-                status.textContent = "Launching roulette...";
-                playerLight.style.backgroundColor = "blue";
-                roulette();
+            if(timeLeft <= 5 && playerCount > 0) {
+                status.textContent = "Determining number...";
+                playerLight.style.backgroundColor = "blue";   
             }
             if (timeLeft < 0){ 
                 playerLight.style.backgroundColor = "yellow";
@@ -255,80 +252,14 @@ document.addEventListener("DOMContentLoaded", function() {
 function roulette() {
     const number1 = document.getElementById('falling-number1');
     const number2 = document.getElementById('falling-number2');
-    const containe = document.querySelector('body');
- 
-    number1.style.background = '';
-    number2.style.background = '';
 
-    const middle = containe.clientHeight / 2 -100; 
- 
-    document.getElementById("random-path-container").style.display = "none";
-    number1.style.transition = 'top 0.2s ease-in-out';
-    number1.style.top = `${middle}px`; 
-    number2.style.transition = 'top 0.2s ease-in-out';
-    number2.style.top = `${middle}px`; 
 
-    let spinDuration = 7000; // How long to spin (ms)
-    let intervalSpeed = 70;
-    const blinkSpeeds = [800, 650, 500]; // blink faster as time runs out
 
-    console.log("Spinning started");
+    // Update numbers constantly
     function spinNumber() {
-        const rand = Math.floor(Math.random() * 10);
-        const rand2 = Math.floor(Math.random() * 10);
-        number1.textContent = rand;
-        number2.textContent = rand2;
+        number1.textContent = Math.floor(Math.random() * 10);
+        number2.textContent = Math.floor(Math.random() * 10);
     }
 
-    // Start spinning
-    const spinInterval = setInterval(spinNumber, intervalSpeed);
-    let blinkInterval;
-    let blinkState = false;
-    let elapsed = 0;
-
-    function startBlinking(blinkSpeed) {
-        blinkInterval = setInterval(() => {
-            blinkState = !blinkState;
-            const bg = blinkState
-                ? 'linear-gradient(135deg, #bdcdde, #122c31)'
-                : 'linear-gradient(135deg, #122c31, #bdcdde)';
-            number1.style.background = bg;
-            number2.style.background = bg;
-        }, blinkSpeed); // Start slow
-    }
-
-    function adjustBlinkSpeed() {
-        if (elapsed === spinDuration * 0.66 ) {
-            clearInterval(blinkInterval);
-            startBlinking(blinkSpeeds[2]); // Fast blink
-        } else if (elapsed === spinDuration * 0.33 ) {
-            clearInterval(blinkInterval);
-            startBlinking(blinkSpeeds[1]); // Fast blink
-        }
-        else if (elapsed === spinDuration ) {
-            clearInterval(blinkInterval);
-        }
-    }
-
-        if(elapsed <100){
-            startBlinking(blinkSpeeds[0]); // Start slow
-        }
-
-    // Track elapsed time to adjust blink speed
-    const timer = setInterval(() => {
-        elapsed += 100;
-
-        adjustBlinkSpeed();
-    }, 100);
-    // Stop spinning after duration
-    setTimeout(() => {
-        clearInterval(spinInterval);
-        clearInterval(blinkInterval);
-        clearInterval(timer);
-
-        number1.innerHTML = `<div class="spinner"></div>`;
-        number2.innerHTML = `<div class="spinner"></div>`;
-        document.getElementById("random-path-container").style.display = "block";
-
-    }, spinDuration);
+    setInterval(spinNumber, 100);
 }
