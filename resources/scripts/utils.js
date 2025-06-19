@@ -177,8 +177,8 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
         // document.body.style.background = "";
 
         document.getElementById("random-path-container").style.display = "block";
-        number1.style.top = "-170px"
-         number2.style.top = "-170px"
+        number1.style.background =''
+        number2.style.background =''
     }, 8000);
 
     document.getElementById("betValue").value = "";
