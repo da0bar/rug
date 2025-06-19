@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
+let rouletteInterval = null;
 function roulette() {
     const number1 = document.getElementById('falling-number1');
     const number2 = document.getElementById('falling-number2');
@@ -261,7 +261,7 @@ function roulette() {
         number2.textContent = Math.floor(Math.random() * 10);
     }
 
-    setInterval(spinNumber, 100);
+    rouletteInterval = setInterval(spinNumber, 100);
 }
 function stopRoulette() {
     if (rouletteInterval) {
