@@ -137,7 +137,7 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
     // document.body.style.backgroundSize = "auto";
     const number1 = document.getElementById('falling-number1');
     const number2 = document.getElementById('falling-number2');
-
+    stopRoulette();
     await updateGameState(contract, account);
     await updateRewards(rewards, account);
     initTimer();
@@ -179,6 +179,7 @@ async function handleRoundEnded(contract, winners, account, playerInGame, winnin
         document.getElementById("random-path-container").style.display = "block";
         number1.style.background =''
         number2.style.background =''
+        roulette();
     }, 8000);
 
     document.getElementById("betValue").value = "";

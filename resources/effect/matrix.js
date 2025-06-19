@@ -263,3 +263,9 @@ function roulette() {
 
     setInterval(spinNumber, 100);
 }
+function stopRoulette() {
+    if (rouletteInterval) {
+        clearInterval(rouletteInterval);
+        rouletteInterval = null;
+    }
+}
