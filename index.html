@@ -51,8 +51,11 @@
     <div id="chat-container">
         <div id="chat-header">
             <span>Rug chat</span>
-            <button id="minimize-chat">_</button>
-            <button id="close-chat">X</button>
+            <div>
+                <button id="minimize-chat">_</button>
+                <button id="close-chat">X</button>
+            </div>
+            
         </div>
         <div id="chat-box"></div>
         <div id="chat-input-container">
@@ -254,7 +257,6 @@
         document.addEventListener("mouseup", () => {
             isDragging = false;
         });
-
         socket.on('chatMessage', (data) => {
             const chatBox = document.getElementById('chat-box');
             chatBox.innerHTML += `<p><strong>Rugger-${data.id.slice(0, 1) + data.id.slice(5, 8)}:</strong> ${data.message}</p>`;
@@ -266,8 +268,7 @@
         minimizeBtn.addEventListener('click', () => {
             minimized = !minimized;
 
-            chatBox.style.display = minimized ? 'none' : 'block';
-            inputContainer.style.display = minimized ? 'none' : 'flex';
+            chatbox.style.display = minimized ? 'none' : 'block';
             minimizeBtn.textContent = minimized ? '▢' : '_'; // ▢ restore icon
         });
         document.getElementById('close-chat').addEventListener('click', () => {
