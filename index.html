@@ -238,38 +238,41 @@
                 input.value = '';
             }
         }
-        const chatbox = document.getElementById("chat-container");
+        const chatContainer = document.getElementById("chat-container");
+        const chatBox = document.getElementById('chat-box');
         const header = document.getElementById("chat-header");
         let offsetX = 0, offsetY = 0, isDragging = false;
 
         header.addEventListener("mousedown", (e) => {
             isDragging = true;
-            offsetX = e.clientX - chatbox.offsetLeft;
-            offsetY = e.clientY - chatbox.offsetTop;
+            offsetX = e.clientX - chatContainer.offsetLeft;
+            offsetY = e.clientY - chatContainer.offsetTop;
         });
 
         document.addEventListener("mousemove", (e) => {
             if (!isDragging) return;
-            chatbox.style.left = e.clientX - offsetX + "px";
-            chatbox.style.top = e.clientY - offsetY + "px";
+            chatContainer.style.left = e.clientX - offsetX + "px";
+            chatContainer.style.top = e.clientY - offsetY + "px";
         });
 
         document.addEventListener("mouseup", () => {
             isDragging = false;
         });
         socket.on('chatMessage', (data) => {
-            const chatBox = document.getElementById('chat-box');
+          
             chatBox.innerHTML += `<p><strong>Rugger-${data.id.slice(0, 1) + data.id.slice(5, 8)}:</strong> ${data.message}</p>`;
             chatBox.scrollTop = chatBox.scrollHeight;
         });
         const minimizeBtn = document.getElementById('minimize-chat');
-         let minimized = false;
+         let isMinimized  = false;
 
         minimizeBtn.addEventListener('click', () => {
-            minimized = !minimized;
+            isMinimized = !isMinimized;
 
-            chatbox.style.display = minimized ? 'none' : 'block';
-            minimizeBtn.textContent = minimized ? '▢' : '_'; // ▢ restore icon
+            chatBox.style.display = isMinimized ? 'none' : 'block';
+            chatInputContainer.style.display = isMinimized ? 'none' : 'flex';
+
+            minimizeBtn.textContent = isMinimized ? '▢' : '_'; // Show ▢ when minimized
         });
         document.getElementById('close-chat').addEventListener('click', () => {
             document.getElementById('chat-container').style.display = 'none';
