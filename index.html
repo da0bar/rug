@@ -51,6 +51,7 @@
     <div id="chat-container">
         <div id="chat-header">
             <span>Rug chat</span>
+            <button id="minimize-chat">_</button>
             <button id="close-chat">X</button>
         </div>
         <div id="chat-box"></div>
@@ -259,7 +260,16 @@
             chatBox.innerHTML += `<p><strong>Rugger-${data.id.slice(0, 1) + data.id.slice(5, 8)}:</strong> ${data.message}</p>`;
             chatBox.scrollTop = chatBox.scrollHeight;
         });
+        const minimizeBtn = document.getElementById('minimize-chat');
+         let minimized = false;
 
+        minimizeBtn.addEventListener('click', () => {
+            minimized = !minimized;
+
+            chatBox.style.display = minimized ? 'none' : 'block';
+            inputContainer.style.display = minimized ? 'none' : 'flex';
+            minimizeBtn.textContent = minimized ? '▢' : '_'; // ▢ restore icon
+        });
         document.getElementById('close-chat').addEventListener('click', () => {
             document.getElementById('chat-container').style.display = 'none';
         });

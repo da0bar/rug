@@ -144,6 +144,15 @@ h1 {
     cursor: pointer;
     font-size: 12px;
 }
+#minimize-chat {
+  background: silver;
+  border: 1px solid #404040;
+  color: black;
+  padding: 0 6px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 4px;
+}
 
 #chat-box {
     height: 150px;
@@ -153,7 +162,10 @@ h1 {
     border-top: 2px solid #808080;
     border-bottom: 2px solid #808080;
 }
-
+#minimize-chat:hover,
+#close-chat:hover {
+  background: #dcdcdc;
+}
 #chat-input-container {
     display: flex;
     padding: 5px;
